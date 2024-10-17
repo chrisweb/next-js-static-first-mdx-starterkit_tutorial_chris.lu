@@ -11,14 +11,14 @@
   "dependencies": {
     "react": "19.0.0-rc-cd22717c-20241013",
     "react-dom": "19.0.0-rc-cd22717c-20241013",
-    "next": "15.0.0-canary.190"
+    "next": "15.0.0-canary.195"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.0-canary.190"
+    "typescript": "5.6.3",
+    "@types/node": "22.7.5",
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.3.1",
+    "eslint": "9.12.0",
+    "eslint-config-next": "15.0.0-canary.195"
   }
 }
