@@ -20,6 +20,8 @@ export default function Home() {
           <li>Save and see your changes instantly.</li>
         </ol>
 
+        <img src="" />
+
         <div className={styles.ctas}>
           <a
             className={styles.primary}

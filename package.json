@@ -3,22 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "19.0.0-rc-cd22717c-20241013",
-    "react-dom": "19.0.0-rc-cd22717c-20241013",
-    "next": "15.0.0-canary.195"
+    "next": "15.0.2-canary.3",
+    "react": "19.0.0-rc-1631855f-20241023",
+    "react-dom": "19.0.0-rc-1631855f-20241023"
   },
   "devDependencies": {
-    "typescript": "5.6.3",
-    "@types/node": "22.7.5",
-    "@types/react": "18.3.11",
-    "@types/react-dom": "18.3.1",
-    "eslint": "9.12.0",
-    "eslint-config-next": "15.0.0-canary.195"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "9.13.0",
+    "eslint-config-next": "15.0.2-canary.3",
+    "eslint-plugin-mdx": "3.1.5",
+    "typescript": "^5",
+    "typescript-eslint": "8.11.0"
   }
 }
