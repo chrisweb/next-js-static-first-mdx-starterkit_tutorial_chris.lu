@@ -1,7 +1,8 @@
-# "Next.js static MDX blog" source code
+# MY_PROJECT
 
-This repository contains all the source code for my "Next.js static MDX blog" tutorial that can be found at [chris.lu/web_development/tutorials/next-js-static-mdx-blog](https://chris.lu/web_development/tutorials/next-js-static-mdx-blog)
+## npm commands (package.json scripts)
 
-Every branch of this repository corresponds to a section of the tutorial.
-
-To view the full code (of the final project), have a look at the last branch ["32_sitemap"](https://github.com/chrisweb/next-js-static-mdx-blog_tutorial_chris.lu/tree/32_sitemap)
+`npm run dev`: to start the development server (using turbopack)  
+`npm run build`: to make a production build  
+`npm run start`: to start the server on a production server using the build we made with the previous command  
+`npm run lint`: to run a linting script that will scan our code and help us find problems in our code  
