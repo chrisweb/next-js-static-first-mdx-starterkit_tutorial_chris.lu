@@ -3,7 +3,7 @@
 import * as Sentry from '@sentry/nextjs'
 import { useEffect } from 'react'
 
-export default function Error({
+export default function GlobalError({
     error,
     reset,
 }: {
@@ -17,13 +17,15 @@ export default function Error({
     }, [error])
 
     return (
-        <>
-            <h1>Sorry, something went wrong 😞</h1>
-            <button
-                onClick={() => reset()} // attempt to recover by trying to re-render the segment
-            >
-                Try again
-            </button>
-        </>
+        <html>
+            <body>
+                <h1>Sorry, something went wrong 😞</h1>
+                <button
+                    onClick={() => reset()} // attempt to recover by trying to re-render the segment
+                >
+                    Try again
+                </button>
+            </body>
+        </html>
     )
 }
