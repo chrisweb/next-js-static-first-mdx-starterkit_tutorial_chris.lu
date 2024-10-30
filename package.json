@@ -10,7 +10,6 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@sentry/nextjs": "8.36.0-alpha.1",
         "next": "15.0.2-canary.9",
         "react": "19.0.0-rc-1631855f-20241023",
         "react-dom": "19.0.0-rc-1631855f-20241023"
