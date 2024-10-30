@@ -15,10 +15,97 @@ const nextConfig = (phase: string) => {
             // experimental typescript "statically typed links"
             // https://nextjs.org/docs/app/api-reference/next-config-js/typedRoutes
             typedRoutes: true,
-        }
+        },
+        headers: async () => {
+            return [
+                {
+                    source: '/(.*)',
+                    headers: securityHeadersConfig(phase)
+                },
+            ];
+        },
     };
 
     return nextConfigOptions
+
+}
+
+const securityHeadersConfig = (phase: string) => {
+
+    const cspReportOnly = true
+
+    const cspHeader = () => {
+
+        const upgradeInsecure = (phase !== PHASE_DEVELOPMENT_SERVER && !cspReportOnly) ? 'upgrade-insecure-requests;' : ''
+
+        // worker-src is for sentry replay
+        // child-src is because safari <= 15.4 does not support worker-src
+        const defaultCSPDirectives = `
+            default-src 'none';
+            media-src 'self';
+            object-src 'none';
+            worker-src 'self' blob:;
+            child-src 'self' blob:;
+            manifest-src 'self';
+            base-uri 'none';
+            form-action 'none';
+            require-trusted-types-for 'script';
+            frame-ancestors 'none';
+            ${upgradeInsecure}
+        `
+
+        // when environment is preview enable unsafe-inline scripts for vercel preview feedback/comments feature
+        // and whitelist vercel's domains based on:
+        // https://vercel.com/docs/workflow-collaboration/comments/specialized-usage#using-a-content-security-policy
+        // and white-list vitals.vercel-insights
+        // based on: https://vercel.com/docs/speed-insights#content-security-policy
+        if (process.env.VERCEL_ENV === 'preview') {
+            return `
+                ${defaultCSPDirectives}
+                font-src 'self' https://vercel.live/ https://assets.vercel.com https://fonts.gstatic.com;
+                style-src 'self' 'unsafe-inline' https://vercel.live/fonts;
+                script-src 'self' 'unsafe-inline' https://vercel.live/;
+                connect-src 'self' https://vercel.live/ https://vitals.vercel-insights.com https://*.pusher.com/ wss://*.pusher.com/;
+                img-src 'self' data: https://vercel.com/ https://vercel.live/;
+                frame-src 'self' https://vercel.live/;
+            `
+        }
+
+        // for production environment white-list vitals.vercel-insights
+        // based on: https://vercel.com/docs/speed-insights#content-security-policy
+        if (process.env.VERCEL_ENV === 'production') {
+            return `
+                ${defaultCSPDirectives}
+                font-src 'self';
+                style-src 'self' 'unsafe-inline';
+                script-src 'self' 'unsafe-inline';
+                connect-src 'self' https://vitals.vercel-insights.com;
+                img-src 'self' data:;
+                frame-src 'none';
+            `
+        }
+
+        // for dev environment enable unsafe-eval for hot-reload
+        return `
+            ${defaultCSPDirectives}
+            font-src 'self';
+            style-src 'self' 'unsafe-inline';
+            script-src 'self' 'unsafe-inline' 'unsafe-eval';
+            connect-src 'self';
+            img-src 'self' data:;
+            frame-src 'none';
+        `
+
+    }
+
+    const headers = [
+        {
+            key: cspReportOnly ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy',
+            value: cspHeader().replace(/\n/g, ''),
+        },
+    ]
+
+    return headers
 
 }
 
