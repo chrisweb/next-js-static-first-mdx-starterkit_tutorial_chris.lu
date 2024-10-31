@@ -26,9 +26,9 @@ const nextConfig = (phase: string) => {
             // https://nextjs.org/docs/app/api-reference/next-config-js/typedRoutes
             typedRoutes: true,
             // use experimental rust compiler for MDX
-            // as of now (30.10.2024) there is no support for rehype & remark plugins
-            // this is why it is currently disabled
-            mdxRs: false,
+            // as of now (Oct 2024) there is no support for rehype & remark plugins
+            // this is why it is currently commented out
+            //mdxRs: true,
         },
         headers: async () => {
             return [
@@ -40,7 +40,7 @@ const nextConfig = (phase: string) => {
         },
         // configure `pageExtensions` to include MDX files
         pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-       
+
     }
 
     return withMDX(nextConfigOptions)
@@ -138,23 +138,23 @@ const securityHeadersConfig = (phase: string) => {
     }
 
     const headers = [
-		...extraSecurityHeaders,
-		{
-			key: cspReportOnly ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy',
-			value: cspHeader().replace(/\n/g, ''),
-		},
-		{
-			key: 'Referrer-Policy',
-			value: 'same-origin',
-		},
-		{
-			key: 'X-Content-Type-Options',
-			value: 'nosniff',
-		},
-		{
-			key: 'X-Frame-Options',
-			value: 'DENY'
-		},
+        ...extraSecurityHeaders,
+        {
+            key: cspReportOnly ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy',
+            value: cspHeader().replace(/\n/g, ''),
+        },
+        {
+            key: 'Referrer-Policy',
+            value: 'same-origin',
+        },
+        {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+        },
+        {
+            key: 'X-Frame-Options',
+            value: 'DENY'
+        },
     ]
 
     return headers
