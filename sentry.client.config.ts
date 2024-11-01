@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 Sentry.init({
-    dsn: 'YOUR_SENTRY_DSN_URL',
+    dsn: 'https://c6dda7f21d738794f998f44bdcb4e0c5@o4504017992482816.ingest.us.sentry.io/4507792998465536',
 
     // Adjust this value in production, or use tracesSampler for greater control
     tracesSampleRate: tracesSampleRate,

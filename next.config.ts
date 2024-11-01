@@ -167,8 +167,8 @@ export default withSentryConfig(
         // For all available options, see:
         // https://github.com/getsentry/sentry-webpack-plugin#options
 
-        org: "MY_ORGANIZATION_NAME",
-        project: "MY_PROJECT_NAME",
+        org: "chrisweb",
+        project: "debug_sentry_undefined",
 
         // Only print logs for uploading source maps in CI
         silent: !process.env.CI,
