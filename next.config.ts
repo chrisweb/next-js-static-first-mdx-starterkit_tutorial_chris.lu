@@ -40,7 +40,11 @@ const nextConfig = (phase: string) => {
         },
         // configure `pageExtensions` to include MDX files
         pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-
+        eslint: {
+            // we have added a lint command to the package.json build script
+            // which is why we disable the default next lint (during builds) here
+            ignoreDuringBuilds: true,
+        },
     }
 
     return withMDX(nextConfigOptions)
