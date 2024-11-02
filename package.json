@@ -12,19 +12,19 @@
     "dependencies": {
         "@mdx-js/loader": "3.1.0",
         "@next/mdx": "15.0.2",
-        "@sentry/nextjs": "8.36.0-alpha.1",
+        "@sentry/nextjs": "8.36.0",
         "@types/mdx": "2.0.13",
-        "next": "15.0.2-canary.9",
-        "react": "19.0.0-rc-1631855f-20241023",
-        "react-dom": "19.0.0-rc-1631855f-20241023"
+        "next": "15.0.3-canary.3",
+        "react": "19.0.0-rc-603e6108-20241029",
+        "react-dom": "19.0.0-rc-603e6108-20241029"
     },
     "devDependencies": {
-        "@types/node": "^20",
-        "@types/react": "^18",
-        "@types/react-dom": "^18",
-        "typescript": "^5"
+        "@types/node": "20.17.5",
+        "@types/react": "npm:types-react@19.0.0-rc.1",
+        "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+        "typescript": "5.6.3"
     },
     "overrides": {
-        "next": "15.0.2-canary.9"
+        "next": "15.0.3-canary.3"
     }
 }
