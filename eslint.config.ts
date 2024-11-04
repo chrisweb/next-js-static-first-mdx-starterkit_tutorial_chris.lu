@@ -4,6 +4,7 @@ import js from '@eslint/js'
 import { FlatCompat } from '@eslint/eslintrc'
 import tseslint from 'typescript-eslint'
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
+import mdx from 'eslint-plugin-mdx'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -26,17 +27,37 @@ const tsESLintConfig = tseslint.config(
     // OR the type checked version
     ...tseslint.configs.stylisticTypeChecked,
     {
+        files: ['**/*.ts?(x)'],
         languageOptions: {
             parserOptions: {
                 projectService: true,
                 tsconfigRootDir: import.meta.dirname,
             },
-        }
+        },
+    },
+)
+
+const mdxESLintConfig = [
+    mdx.configs.flat,
+    mdx.configs.flatCodeBlocks,
+    {
+        files: ['**/*.md?(x)'],
+        ...mdx.flat,
+        processor: mdx.createRemarkProcessor({
+            lintCodeBlocks: true,
+            languageMapper: {},
+        }),
     },
     {
-        files: ['**/*.ts', '**/*.tsx']
-    }
-)
+        files: ['**/*.md?(x)'],
+        ...mdx.flatCodeBlocks,
+        rules: {
+            ...mdx.flatCodeBlocks.rules,
+            'no-var': 'error',
+            'prefer-const': 'error',
+        },
+    },
+] as FlatConfig.Config[]
 
 export default [
     ...compat.extends('next/core-web-vitals'),
@@ -53,4 +74,5 @@ export default [
         }
     },
     ...tsESLintConfig,
+    ...mdxESLintConfig,
 ] satisfies FlatConfig.Config[]
