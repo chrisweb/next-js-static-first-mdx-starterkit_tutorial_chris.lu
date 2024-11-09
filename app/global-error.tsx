@@ -21,7 +21,10 @@ export default function GlobalError({
             <body>
                 <h1>Sorry, something went wrong 😞</h1>
                 <button
-                    onClick={() => reset()} // attempt to recover by trying to re-render the segment
+                    onClick={() => {
+                        // attempt to recover by trying to re-render the segment
+                        reset()
+                    }}
                 >
                     Try again
                 </button>

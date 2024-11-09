@@ -38,6 +38,5 @@ Sentry.init({
             blockAllMedia: true,
         }),
     ],
-
-    environment: process.env.NODE_ENV ? process.env.NODE_ENV : '',
+    environment: process.env.NODE_ENV,
 })
