@@ -5,18 +5,45 @@ import { FlatCompat } from '@eslint/eslintrc'
 import tseslint from 'typescript-eslint'
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
 import mdx from 'eslint-plugin-mdx'
+import mdxParser from 'eslint-mdx'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const compat = new FlatCompat({
     baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
 })
 
+const compatConfig = [
+    ...compat.extends('next/core-web-vitals'),
+]
+/*const compatConfig = compat.config({
+    extends: [
+      // https://github.com/vercel/next.js/discussions/49337
+      'plugin:@next/eslint-plugin-next/core-web-vitals',
+      // https://github.com/facebook/react/issues/28313
+      //'plugin:react-hooks/recommended',
+      //'plugin:jsx-a11y/recommended',
+    ],
+  }
+)*/
+
+const mdxESLintConfig = [
+    ...compatConfig,
+    {
+        files: ["**/*.md?(x)"],
+        ...mdx.configs.flat,
+        ...mdx.configs.flatCodeBlocks,
+        languageOptions: {
+            parser: mdxParser,
+            parserOptions: {
+                markdownExtensions: ["*.md, *.mdx"],
+            },
+        },
+    },
+] as FlatConfig.Config[]
+
 const tsESLintConfig = tseslint.config(
-    // eslint recommended rules
-    js.configs.recommended,
+    ...compatConfig,
     //...tseslint.configs.recommended,
     // OR more type checked rules
     //...tseslint.configs.recommendedTypeChecked,
@@ -37,30 +64,8 @@ const tsESLintConfig = tseslint.config(
     },
 )
 
-const mdxESLintConfig = [
-    mdx.configs.flat,
-    mdx.configs.flatCodeBlocks,
-    {
-        files: ['**/*.md?(x)'],
-        ...mdx.flat,
-        processor: mdx.createRemarkProcessor({
-            lintCodeBlocks: true,
-            languageMapper: {},
-        }),
-    },
-    {
-        files: ['**/*.md?(x)'],
-        ...mdx.flatCodeBlocks,
-        rules: {
-            ...mdx.flatCodeBlocks.rules,
-            'no-var': 'error',
-            'prefer-const': 'error',
-        },
-    },
-] as FlatConfig.Config[]
-
 export default [
-    ...compat.extends('next/core-web-vitals'),
+    js.configs.recommended,
     {
         ignores: [
             '.next/',
@@ -73,6 +78,6 @@ export default [
             reportUnusedDisableDirectives: 'warn'
         }
     },
-    ...tsESLintConfig,
     ...mdxESLintConfig,
+    ...tsESLintConfig,
 ] satisfies FlatConfig.Config[]
