@@ -17,7 +17,7 @@ export default function GlobalError({
     }, [error])
 
     return (
-        <html>
+        <html lang="en">
             <body>
                 <h1>Sorry, something went wrong 😞</h1>
                 <button

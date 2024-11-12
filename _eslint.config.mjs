@@ -4,11 +4,8 @@ import importX from 'eslint-plugin-import-x'
 import * as mdx from 'eslint-plugin-mdx'
 import react from 'eslint-plugin-react'
 import tseslint from 'typescript-eslint'
-// @ts-expect-error this package has no types
 import reactHooks from 'eslint-plugin-react-hooks'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
-import { Linter } from 'eslint'
-import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
 
 const compat = new FlatCompat()
 
@@ -40,20 +37,18 @@ const tsESLintConfig = tseslint.config(
             // OR more strict rules
             //...tseslint.configs.strict,
             // OR more strict and type checked rules
-            // eslint-disable-next-line import-x/no-named-as-default-member
             ...tseslint.configs.strictTypeChecked,
             // optional stylistic rules
             //...tseslint.configs.stylistic,
             // OR the type checked version
             ...tseslint.configs.stylisticTypeChecked,
-            react.configs.flat?.recommended,
-            react.configs.flat?.['jsx-runtime'],
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            react.configs.flat.recommended,
+            react.configs.flat['jsx-runtime'],
             jsxA11y.flatConfigs.recommended,
             importX.flatConfigs.recommended,
             // the following is only needed if you use typescript
             importX.flatConfigs.typescript,
-        ] as FlatConfig.ConfigArray,
+        ],
         files: ['**/*.mjs', '**/*.ts?(x)'],
         // only needed if you use TypeChecked rules
         languageOptions: {
@@ -72,11 +67,9 @@ const tsESLintConfig = tseslint.config(
         },
         plugins: {
             react,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             'react-hooks': reactHooks,
-        } as Linter.Config['plugins'],
+        },
         rules: {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             ...reactHooks.configs.recommended.rules,
             // rules from eslint-config-next
             'import-x/no-anonymous-default-export': 'warn',
@@ -90,7 +83,7 @@ const tsESLintConfig = tseslint.config(
             'jsx-a11y/role-has-required-aria-props': 'warn',
             'jsx-a11y/role-supports-aria-props': 'warn',
             'react/jsx-no-target-blank': 'off',
-        } as Linter.Config['rules'],
+        },
         settings: {
             react: {
                 version: 'detect',
@@ -135,8 +128,9 @@ const mdxESLintConfig = [
             'prefer-const': 'error',
         },
     },
-] as FlatConfig.Config[]
+]
 
+// eslint-disable-next-line import-x/no-anonymous-default-export
 export default [
     {
         name: 'ignoreESLintConfig',
@@ -152,4 +146,4 @@ export default [
     ...tsESLintConfig,
     ...mdxESLintConfig,
     ...compatNextESLintPlugin,
-] satisfies FlatConfig.Config[]
+]
