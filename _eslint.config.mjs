@@ -3,7 +3,7 @@ import { FlatCompat } from '@eslint/eslintrc'
 import importX from 'eslint-plugin-import-x'
 import * as mdx from 'eslint-plugin-mdx'
 import react from 'eslint-plugin-react'
-import tseslint from 'typescript-eslint'
+import tseslint, { configs as tseslintConfigs } from 'typescript-eslint'
 import reactHooks from 'eslint-plugin-react-hooks'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 
@@ -31,17 +31,17 @@ const tsESLintConfig = tseslint.config(
         // as we did not use eslint-config-next we will now
         // manually add the packages it would have added
         extends: [
-            //...tseslint.configs.recommended,
+            //...tseslintConfigs.recommended,
             // OR more type checked rules
-            //...tseslint.configs.recommendedTypeChecked,
+            //...tseslintConfigs.recommendedTypeChecked,
             // OR more strict rules
-            //...tseslint.configs.strict,
+            //...tseslintConfigs.strict,
             // OR more strict and type checked rules
-            ...tseslint.configs.strictTypeChecked,
+            ...tseslintConfigs.strictTypeChecked,
             // optional stylistic rules
-            //...tseslint.configs.stylistic,
+            //...tseslintConfigs.stylistic,
             // OR the type checked version
-            ...tseslint.configs.stylisticTypeChecked,
+            ...tseslintConfigs.stylisticTypeChecked,
             react.configs.flat.recommended,
             react.configs.flat['jsx-runtime'],
             jsxA11y.flatConfigs.recommended,
@@ -94,7 +94,7 @@ const tsESLintConfig = tseslint.config(
         // disable type-aware linting on JS files
         // only needed if you use TypeChecked rules
         files: ['**/*.mjs'],
-        ...tseslint.configs.disableTypeChecked,
+        ...tseslintConfigs.disableTypeChecked,
     },
 )
 
