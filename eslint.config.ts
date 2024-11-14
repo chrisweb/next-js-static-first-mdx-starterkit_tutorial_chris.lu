@@ -34,21 +34,19 @@ const tsESLintConfig = tseslint.config(
         // as we did not use eslint-config-next we will now
         // manually add the packages it would have added
         extends: [
-            //...tseslint.configs.recommended,
+            //...tseslintConfigs.recommended,
             // OR more type checked rules
-            //...tseslint.configs.recommendedTypeChecked,
+            //...tseslintConfigs.recommendedTypeChecked,
             // OR more strict rules
-            //...tseslint.configs.strict,
+            //...tseslintConfigs.strict,
             // OR more strict and type checked rules
-            // eslint-disable-next-line import-x/no-named-as-default-member
-            ...tseslint.configs.strictTypeChecked,
+            ...tseslintConfigs.strictTypeChecked,
             // optional stylistic rules
-            //...tseslint.configs.stylistic,
+            //...tseslintConfigs.stylistic,
             // OR the type checked version
             ...tseslintConfigs.stylisticTypeChecked,
             react.configs.flat?.recommended,
             react.configs.flat?.['jsx-runtime'],
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             jsxA11y.flatConfigs.recommended,
             importX.flatConfigs.recommended,
             // the following is only needed if you use typescript
