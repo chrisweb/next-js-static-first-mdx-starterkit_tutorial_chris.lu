@@ -88,6 +88,16 @@ const tsESLintConfig = tseslint.config(
             'jsx-a11y/role-has-required-aria-props': 'warn',
             'jsx-a11y/role-supports-aria-props': 'warn',
             'react/jsx-no-target-blank': 'off',
+            // our custom rules
+            quotes: [
+                'error',
+                'single',
+                { "allowTemplateLiterals": true },
+            ],
+            semi: [
+                'error',
+                'never',
+            ],
         } as Linter.Config['rules'],
         settings: {
             react: {
