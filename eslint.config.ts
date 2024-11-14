@@ -121,7 +121,9 @@ const mdxESLintConfig = [
         files: ['**/*.mdx'],
         ...mdx.flat,
         processor: mdx.createRemarkProcessor({
-            lintCodeBlocks: true,
+            // I disabled linting code blocks
+            // as I was having performance issues
+            lintCodeBlocks: false,
             languageMapper: {},
         }),
     },
