@@ -92,7 +92,7 @@ const tsESLintConfig = tseslint.config(
             quotes: [
                 'error',
                 'single',
-                { "allowTemplateLiterals": true },
+                { 'allowTemplateLiterals': true },
             ],
             semi: [
                 'error',
