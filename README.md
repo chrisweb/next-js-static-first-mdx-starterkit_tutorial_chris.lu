@@ -11,6 +11,9 @@
 `npm run lint-nocache`: same as **lint** command without cache, takes longer but can be useful when testing changes
 `npm run lint-debug`: the **lint** with the ESLint **debug** flag (for a more verbose output)
 `npm run lint-fix`: the **lint** command with the **fix** flag activated (to automatically fix errors and warnings if it can), you probably want to create a new branch before running this as it might produce a big quantity of changed files
+`npm run lint-debug-config`: will print debugging information about what gets loaded by our ESLint config
+`npm run lint-print-config`: print out a json representation of what is in our ESLint config
+`npm run lint-inspect-config`: will open `http://localhost:7777/` in your browser, which is a tool to help you visualize the content of our ESLint config
 
 ## CI/CD pipeline for automatic deployments
 
