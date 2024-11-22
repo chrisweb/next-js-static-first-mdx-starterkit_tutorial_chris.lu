@@ -8,7 +8,6 @@ import tseslint, { configs as tseslintConfigs } from 'typescript-eslint'
 // @ts-expect-error this package has no types
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
-//import { Linter } from 'eslint'
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
 // @ts-expect-error this package has no types
 import nextPlugin from '@next/eslint-plugin-next'
@@ -31,9 +30,41 @@ import nextPlugin from '@next/eslint-plugin-next'
     ],
 })*/
 
-const tsESLintConfig = tseslint.config(
+const ignoresConfig = [
     {
-        name: 'tsESLintConfig',
+        name: 'custom/eslint/ignores',
+        // the global ignores must be in it's own config object
+        ignores: [
+            '.next/',
+            '.vscode/',
+            'public/',
+        ]
+    },
+] as FlatConfig.Config[]
+
+const eslintConfig = [
+    {
+        name: 'jsESLintConfig',
+        // all files expect mdx files
+        files: ['**/*.mjs', '**/*.ts?(x)'],
+        ...eslintPlugin.configs.recommended,
+        rules: {
+            quotes: [
+                'error',
+                'single',
+                { 'allowTemplateLiterals': true },
+            ],
+            semi: [
+                'error',
+                'never',
+            ],
+        },
+    },
+] as FlatConfig.Config[]
+
+const tseslintConfig = tseslint.config(
+    {
+        name: 'custom/typescript-eslint/recommended',
         files: ['**/*.mjs', '**/*.ts?(x)'],
         // as we did not use eslint-config-next we will now
         // manually add the packages it would have added
@@ -74,9 +105,9 @@ const tsESLintConfig = tseslint.config(
     },
 )
 
-const nextESLintConfig = [
+const nextConfig = [
     {
-        name: 'nextESLintConfig',
+        name: 'custom/next/config',
         // no files for this config as we want to apply it to all files
         plugins: {
             'react': reactPlugin,
@@ -132,27 +163,7 @@ const nextESLintConfig = [
     }
 ] as FlatConfig.Config[]
 
-const jsESLintConfig = [
-    {
-        name: 'jsESLintConfig',
-        // all files expect mdx files
-        files: ['**/*.mjs', '**/*.ts?(x)'],
-        ...eslintPlugin.configs.recommended,
-        rules: {
-            quotes: [
-                'error',
-                'single',
-                { 'allowTemplateLiterals': true },
-            ],
-            semi: [
-                'error',
-                'never',
-            ],
-        },
-    },
-] as FlatConfig.Config[]
-
-const mdxESLintConfig = [
+const mdxConfig = [
     // https://github.com/mdx-js/eslint-mdx/blob/d6fc093fb32ab58fb226e8cf42ac77399b8a4758/README.md#flat-config
     {
         name: 'mdxFlatESLintConfig',
@@ -178,19 +189,9 @@ const mdxESLintConfig = [
 ] as FlatConfig.Config[]
 
 export default [
-    {
-        name: 'ignoreESLintConfig',
-        // the ignores option needs to be in a separate configuration object
-        // replaces the .eslintignore file
-        ignores: [
-            '.next/',
-            '.vscode/',
-            'public/',
-        ]
-    },
-    ...jsESLintConfig,
-    ...tsESLintConfig,
-    ...mdxESLintConfig,
-    ...nextESLintConfig,
-    //...compatNextESLintPlugin,
+    ...ignoresConfig,
+    ...eslintConfig,
+    ...tseslintConfig,
+    ...mdxConfig,
+    ...nextConfig,
 ] satisfies FlatConfig.Config[]
