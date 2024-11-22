@@ -1,16 +1,19 @@
-import js from '@eslint/js'
-import { FlatCompat } from '@eslint/eslintrc'
-import importX from 'eslint-plugin-import-x'
-import * as mdx from 'eslint-plugin-mdx'
-import react from 'eslint-plugin-react'
+import eslintPlugin from '@eslint/js'
+//import { FlatCompat } from '@eslint/eslintrc'
+// @ts-expect-error this package has no types
+import importPlugin from 'eslint-plugin-import'
+import * as mdxPlugin from 'eslint-plugin-mdx'
+import reactPlugin from 'eslint-plugin-react'
 import tseslint, { configs as tseslintConfigs } from 'typescript-eslint'
 // @ts-expect-error this package has no types
-import reactHooks from 'eslint-plugin-react-hooks'
-import jsxA11y from 'eslint-plugin-jsx-a11y'
-import { Linter } from 'eslint'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
+//import { Linter } from 'eslint'
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
+// @ts-expect-error this package has no types
+import nextPlugin from '@next/eslint-plugin-next'
 
-const compat = new FlatCompat()
+//const compat = new FlatCompat()
 
 // when using eslint-config-next it becomes complicated
 // to exclude MDX files from setup it does
@@ -20,17 +23,18 @@ const compat = new FlatCompat()
 ]*/
 // so instead we use the same ESLint compat package
 // but only include the eslint-plugin-next
-const compatNextESLintPlugin = compat.config({
+/*const compatNextESLintPlugin = compat.config({
     extends: [
         // will get applied to all files
         // https://github.com/vercel/next.js/discussions/49337
         'plugin:@next/eslint-plugin-next/core-web-vitals',
     ],
-})
+})*/
 
 const tsESLintConfig = tseslint.config(
     {
         name: 'tsESLintConfig',
+        files: ['**/*.mjs', '**/*.ts?(x)'],
         // as we did not use eslint-config-next we will now
         // manually add the packages it would have added
         extends: [
@@ -45,14 +49,7 @@ const tsESLintConfig = tseslint.config(
             //...tseslintConfigs.stylistic,
             // OR the type checked version
             ...tseslintConfigs.stylisticTypeChecked,
-            react.configs.flat?.recommended,
-            react.configs.flat?.['jsx-runtime'],
-            jsxA11y.flatConfigs.recommended,
-            importX.flatConfigs.recommended,
-            // the following is only needed if you use typescript
-            importX.flatConfigs.typescript,
         ] as FlatConfig.ConfigArray,
-        files: ['**/*.mjs', '**/*.ts?(x)'],
         // only needed if you use TypeChecked rules
         languageOptions: {
             parserOptions: {
@@ -68,16 +65,45 @@ const tsESLintConfig = tseslint.config(
                 //warnOnUnsupportedTypeScriptVersion: false,
             },
         },
+    },
+    {
+        // disable type-aware linting on JS files
+        // only needed if you use TypeChecked rules
+        files: ['**/*.mjs'],
+        ...tseslintConfigs.disableTypeChecked,
+    },
+)
+
+const nextESLintConfig = [
+    {
+        name: 'nextESLintConfig',
+        // no files for this config as we want to apply it to all files
         plugins: {
-            react,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            'react-hooks': reactHooks,
-        } as Linter.Config['plugins'],
+            'react': reactPlugin,
+            'jsx-a11y': jsxA11yPlugin,
+            /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+            'react-hooks': reactHooksPlugin,
+            '@next/next': nextPlugin,
+            'import': importPlugin,
+            /* eslint-enable @typescript-eslint/no-unsafe-assignment */
+        },
         rules: {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            ...reactHooks.configs.recommended.rules,
+            ...reactPlugin.configs.recommended.rules,
+            ...reactPlugin.configs['jsx-runtime'].rules,
+            /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+            ...reactHooksPlugin.configs.recommended.rules,
+            ...nextPlugin.configs.recommended.rules,
+            // this is the nextjs strict mode
+            ...nextPlugin.configs['core-web-vitals'].rules,
+            ...importPlugin.configs.recommended.rules,
+            // the following is only needed if you use typescript
+            // don't use the typescript rules from the plugin import
+            // https://github.com/import-js/eslint-plugin-import/issues/2969
+            //...importPlugin.configs.typescript.rules,
+            //...importTypescriptPlugin.configs.recommended.rules,
+            /* eslint-enable @typescript-eslint/no-unsafe-member-access */
             // rules from eslint-config-next
-            'import-x/no-anonymous-default-export': 'warn',
+            'import/no-anonymous-default-export': 'warn',
             'react/no-unknown-property': 'off',
             'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
@@ -88,7 +114,31 @@ const tsESLintConfig = tseslint.config(
             'jsx-a11y/role-has-required-aria-props': 'warn',
             'jsx-a11y/role-supports-aria-props': 'warn',
             'react/jsx-no-target-blank': 'off',
-            // our custom rules
+        } as FlatConfig.Rules,
+        settings: {
+            'react': {
+                version: 'detect',
+            },
+            // only needed if you use (eslint-import-resolver-)typescript
+            'import/parsers': {
+                '@typescript-eslint/parser': ['.ts', '.tsx', '.mjs']
+            },
+            'import/resolver': {
+                typescript: {
+                    alwaysTryTypes: true
+                }
+            }
+        },
+    }
+] as FlatConfig.Config[]
+
+const jsESLintConfig = [
+    {
+        name: 'jsESLintConfig',
+        // all files expect mdx files
+        files: ['**/*.mjs', '**/*.ts?(x)'],
+        ...eslintPlugin.configs.recommended,
+        rules: {
             quotes: [
                 'error',
                 'single',
@@ -98,37 +148,17 @@ const tsESLintConfig = tseslint.config(
                 'error',
                 'never',
             ],
-        } as Linter.Config['rules'],
-        settings: {
-            react: {
-                version: 'detect',
-            },
         },
     },
-    {
-        // disable type-aware linting on JS files
-        // only needed if you use TypeChecked rules
-        files: ['**/*.mjs'],
-        ...tseslintConfigs.disableTypeChecked,
-    },
-)
-
-const jsESLintConfig = [
-    {
-        name: 'jsESLintConfig',
-        // all files expect mdx files
-        files: ['**/*.mjs', '**/*.ts?(x)'],
-        ...js.configs.recommended,
-    },
-]
+] as FlatConfig.Config[]
 
 const mdxESLintConfig = [
     // https://github.com/mdx-js/eslint-mdx/blob/d6fc093fb32ab58fb226e8cf42ac77399b8a4758/README.md#flat-config
     {
         name: 'mdxFlatESLintConfig',
         files: ['**/*.mdx'],
-        ...mdx.flat,
-        processor: mdx.createRemarkProcessor({
+        ...mdxPlugin.flat,
+        processor: mdxPlugin.createRemarkProcessor({
             // I disabled linting code blocks
             // as I was having performance issues
             lintCodeBlocks: false,
@@ -138,9 +168,9 @@ const mdxESLintConfig = [
     {
         name: 'mdxFlatCodeBlocksESLintConfig',
         files: ['**/*.mdx'],
-        ...mdx.flatCodeBlocks,
+        ...mdxPlugin.flatCodeBlocks,
         rules: {
-            ...mdx.flatCodeBlocks.rules,
+            ...mdxPlugin.flatCodeBlocks.rules,
             'no-var': 'error',
             'prefer-const': 'error',
         },
@@ -161,5 +191,6 @@ export default [
     ...jsESLintConfig,
     ...tsESLintConfig,
     ...mdxESLintConfig,
-    ...compatNextESLintPlugin,
+    ...nextESLintConfig,
+    //...compatNextESLintPlugin,
 ] satisfies FlatConfig.Config[]
