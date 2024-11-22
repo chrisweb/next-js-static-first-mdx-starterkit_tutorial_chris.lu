@@ -9,16 +9,19 @@
         "start": "next start",
         "next-lint": "next lint",
         "lint": "eslint --flag unstable_ts_config --cache --cache-location .next/cache/eslint/",
-        "lint-nocache": "eslint",
-        "lint-debug": "eslint --debug",
-        "lint-fix": "eslint --fix"
+        "lint-nocache": "eslint --flag unstable_ts_config",
+        "lint-debug": "eslint --flag unstable_ts_config --debug",
+        "lint-fix": "eslint --flag unstable_ts_config --fix",
+        "lint-debug-config": "eslint --flag unstable_ts_config --debug eslint.config.ts",
+        "lint-print-config": "eslint --flag unstable_ts_config --print-config eslint.config.ts",
+        "lint-inspect-config": "eslint --flag unstable_ts_config --inspect-config eslint.config.ts"
     },
     "dependencies": {
         "@mdx-js/loader": "3.1.0",
-        "@next/mdx": "15.0.4-canary.19",
-        "@sentry/nextjs": "8.39.0",
+        "@next/mdx": "15.0.4-canary.24",
+        "@sentry/nextjs": "8.40.0",
         "@types/mdx": "2.0.13",
-        "next": "15.0.4-canary.19",
+        "next": "15.0.4-canary.24",
         "react": "19.0.0-rc-380f5d67-20241113",
         "react-dom": "19.0.0-rc-380f5d67-20241113"
     },
@@ -31,8 +34,9 @@
         "@types/react": "npm:types-react@19.0.0-rc.1",
         "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
         "eslint": "9.15.0",
-        "eslint-config-next": "15.0.4-canary.19",
-        "eslint-plugin-import-x": "4.4.2",
+        "eslint-config-next": "15.0.4-canary.24",
+        "eslint-import-resolver-typescript": "3.6.3",
+        "eslint-plugin-import": "2.31.0",
         "eslint-plugin-jsx-a11y": "6.10.2",
         "eslint-plugin-mdx": "3.1.5",
         "eslint-plugin-react": "7.37.2",
@@ -42,6 +46,6 @@
         "typescript-eslint": "8.15.0"
     },
     "overrides": {
-        "next": "15.0.4-canary.19"
+        "next": "15.0.4-canary.24"
     }
 }
