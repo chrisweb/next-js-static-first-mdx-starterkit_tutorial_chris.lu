@@ -130,8 +130,7 @@ const mdxESLintConfig = [
     },
 ]
 
-// eslint-disable-next-line import-x/no-anonymous-default-export
-export default [
+const eslintConfig = [
     {
         name: 'ignoreESLintConfig',
         // the ignores option needs to be in a separate configuration object
@@ -147,3 +146,5 @@ export default [
     ...mdxESLintConfig,
     ...compatNextESLintPlugin,
 ]
+
+export default eslintConfig
