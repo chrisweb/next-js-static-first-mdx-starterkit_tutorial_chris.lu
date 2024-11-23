@@ -1,16 +1,16 @@
 import eslintPlugin from '@eslint/js'
 //import { FlatCompat } from '@eslint/eslintrc'
+import tseslint, { configs as tseslintConfigs } from 'typescript-eslint'
+import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
 // @ts-expect-error this package has no types
 import importPlugin from 'eslint-plugin-import'
-import * as mdxPlugin from 'eslint-plugin-mdx'
 import reactPlugin from 'eslint-plugin-react'
-import tseslint, { configs as tseslintConfigs } from 'typescript-eslint'
 // @ts-expect-error this package has no types
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
-import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
 // @ts-expect-error this package has no types
 import nextPlugin from '@next/eslint-plugin-next'
+import * as mdxPlugin from 'eslint-plugin-mdx'
 
 //const compat = new FlatCompat()
 
@@ -44,7 +44,7 @@ const ignoresConfig = [
 
 const eslintConfig = [
     {
-        name: 'jsESLintConfig',
+        name: 'custom/eslint/recommended',
         // all files expect mdx files
         files: ['**/*.mjs', '**/*.ts?(x)'],
         ...eslintPlugin.configs.recommended,
@@ -127,12 +127,10 @@ const nextConfig = [
             // this is the nextjs strict mode
             ...nextPlugin.configs['core-web-vitals'].rules,
             ...importPlugin.configs.recommended.rules,
-            // the following is only needed if you use typescript
-            // don't use the typescript rules from the plugin import
-            // https://github.com/import-js/eslint-plugin-import/issues/2969
-            //...importPlugin.configs.typescript.rules,
-            //...importTypescriptPlugin.configs.recommended.rules,
             /* eslint-enable @typescript-eslint/no-unsafe-member-access */
+            //...jsxA11yPlugin.configs.recommended.rules,
+            // OR more strict a11y rules
+            ...jsxA11yPlugin.configs.strict.rules,
             // rules from eslint-config-next
             'import/no-anonymous-default-export': 'warn',
             'react/no-unknown-property': 'off',
@@ -151,14 +149,11 @@ const nextConfig = [
                 version: 'detect',
             },
             // only needed if you use (eslint-import-resolver-)typescript
-            'import/parsers': {
-                '@typescript-eslint/parser': ['.ts', '.tsx', '.mjs']
-            },
             'import/resolver': {
                 typescript: {
                     alwaysTryTypes: true
                 }
-            }
+            },
         },
     }
 ] as FlatConfig.Config[]
@@ -166,7 +161,7 @@ const nextConfig = [
 const mdxConfig = [
     // https://github.com/mdx-js/eslint-mdx/blob/d6fc093fb32ab58fb226e8cf42ac77399b8a4758/README.md#flat-config
     {
-        name: 'mdxFlatESLintConfig',
+        name: 'custom/mdx/recommended',
         files: ['**/*.mdx'],
         ...mdxPlugin.flat,
         processor: mdxPlugin.createRemarkProcessor({
@@ -177,7 +172,7 @@ const mdxConfig = [
         }),
     },
     {
-        name: 'mdxFlatCodeBlocksESLintConfig',
+        name: 'custom/mdx/code-blocks',
         files: ['**/*.mdx'],
         ...mdxPlugin.flatCodeBlocks,
         rules: {
