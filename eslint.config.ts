@@ -48,17 +48,6 @@ const eslintConfig = [
         // all files expect mdx files
         files: ['**/*.mjs', '**/*.ts?(x)'],
         ...eslintPlugin.configs.recommended,
-        rules: {
-            quotes: [
-                'error',
-                'single',
-                { 'allowTemplateLiterals': true },
-            ],
-            semi: [
-                'error',
-                'never',
-            ],
-        },
     },
 ] as FlatConfig.Config[]
 
