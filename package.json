@@ -18,22 +18,23 @@
     },
     "dependencies": {
         "@mdx-js/loader": "3.1.0",
-        "@next/mdx": "15.0.4-canary.24",
-        "@sentry/nextjs": "8.40.0",
+        "@next/mdx": "15.0.4-canary.29",
+        "@sentry/nextjs": "8.41.0",
         "@types/mdx": "2.0.13",
-        "next": "15.0.4-canary.24",
-        "react": "19.0.0-rc-380f5d67-20241113",
-        "react-dom": "19.0.0-rc-380f5d67-20241113"
+        "next": "15.0.4-canary.29",
+        "react": "19.0.0-rc-b01722d5-20241114",
+        "react-dom": "19.0.0-rc-b01722d5-20241114"
     },
     "devDependencies": {
         "@eslint/js": "9.15.0",
+        "@stylistic/eslint-plugin": "2.11.0",
         "@stylistic/eslint-plugin-ts": "2.11.0",
-        "@types/eslint-plugin-jsx-a11y": "6.9.0",
-        "@types/node": "22.9.1",
+        "@types/eslint-plugin-jsx-a11y": "6.10.0",
+        "@types/node": "22.10.0",
         "@types/react": "npm:types-react@19.0.0-rc.1",
         "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
         "eslint": "9.15.0",
-        "eslint-config-next": "15.0.4-canary.24",
+        "eslint-config-next": "15.0.4-canary.29",
         "eslint-import-resolver-typescript": "3.6.3",
         "eslint-plugin-import": "2.31.0",
         "eslint-plugin-jsx-a11y": "6.10.2",
@@ -41,10 +42,10 @@
         "eslint-plugin-react": "7.37.2",
         "eslint-plugin-react-hooks": "5.0.0",
         "jiti": "2.4.0",
-        "typescript": "5.6.3",
-        "typescript-eslint": "8.15.0"
+        "typescript": "5.7.2",
+        "typescript-eslint": "8.16.0"
     },
     "overrides": {
-        "next": "15.0.4-canary.24"
+        "next": "15.0.4-canary.29"
     }
 }
