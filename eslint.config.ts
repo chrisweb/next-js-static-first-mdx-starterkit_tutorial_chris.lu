@@ -1,5 +1,4 @@
 import eslintPlugin from '@eslint/js'
-//import { FlatCompat } from '@eslint/eslintrc'
 import tseslint, { configs as tseslintConfigs } from 'typescript-eslint'
 import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
 // @ts-expect-error this package has no types
@@ -10,30 +9,21 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
 // @ts-expect-error this package has no types
 import nextPlugin from '@next/eslint-plugin-next'
-import * as mdxPlugin from 'eslint-plugin-mdx'
+import stylisticPlugin from '@stylistic/eslint-plugin'
 
-//const compat = new FlatCompat()
-
-// when using eslint-config-next it becomes complicated
-// to exclude MDX files from setup it does
-// to avoid getting "parsing error: Invalid character"
-/*const compatNextESLintConfig = [
-    ...compat.extends('next/core-web-vitals'),
-]*/
-// so instead we use the same ESLint compat package
-// but only include the eslint-plugin-next
-/*const compatNextESLintPlugin = compat.config({
-    extends: [
-        // will get applied to all files
-        // https://github.com/vercel/next.js/discussions/49337
-        'plugin:@next/eslint-plugin-next/core-web-vitals',
-    ],
-})*/
+const eslintConfig = [
+    {
+        name: 'custom/eslint/recommended',
+        files: ['**/*.ts?(x)'],
+        ...eslintPlugin.configs.recommended,
+    },
+]
 
 const ignoresConfig = [
     {
         name: 'custom/eslint/ignores',
-        // the global ignores must be in it's own config object
+        // the ignores option needs to be in a separate configuration object
+        // replaces the .eslintignore file
         ignores: [
             '.next/',
             '.vscode/',
@@ -42,33 +32,22 @@ const ignoresConfig = [
     },
 ] as FlatConfig.Config[]
 
-const eslintConfig = [
-    {
-        name: 'custom/eslint/recommended',
-        // all files expect mdx files
-        files: ['**/*.mjs', '**/*.ts?(x)'],
-        ...eslintPlugin.configs.recommended,
-    },
-] as FlatConfig.Config[]
-
 const tseslintConfig = tseslint.config(
     {
         name: 'custom/typescript-eslint/recommended',
-        files: ['**/*.mjs', '**/*.ts?(x)'],
-        // as we did not use eslint-config-next we will now
-        // manually add the packages it would have added
+        files: ['**/*.ts?(x)'],
         extends: [
-            //...tseslintConfigs.recommended,
+            ...tseslintConfigs.recommended,
             // OR more type checked rules
             //...tseslintConfigs.recommendedTypeChecked,
             // OR more strict rules
             //...tseslintConfigs.strict,
             // OR more strict and type checked rules
-            ...tseslintConfigs.strictTypeChecked,
+            //...tseslintConfigs.strictTypeChecked,
             // optional stylistic rules
-            //...tseslintConfigs.stylistic,
+            ...tseslintConfigs.stylistic,
             // OR the type checked version
-            ...tseslintConfigs.stylisticTypeChecked,
+            //...tseslintConfigs.stylisticTypeChecked,
         ] as FlatConfig.ConfigArray,
         // only needed if you use TypeChecked rules
         languageOptions: {
@@ -76,19 +55,17 @@ const tseslintConfig = tseslint.config(
                 // https://typescript-eslint.io/getting-started/typed-linting
                 projectService: true,
                 tsconfigRootDir: import.meta.dirname,
-                // react recommended is already adding the ecmaFeatures
-                /*ecmaFeatures: {
+                ecmaFeatures: {
                     jsx: true,
-                },*/
-                // following option already added by eslint recommended
-                // which we added in the jsESLintConfig
-                //warnOnUnsupportedTypeScriptVersion: false,
+                },
+                warnOnUnsupportedTypeScriptVersion: true,
             },
         },
     },
     {
         // disable type-aware linting on JS files
         // only needed if you use TypeChecked rules
+        // (and you have javascript files in your project)
         files: ['**/*.mjs'],
         ...tseslintConfigs.disableTypeChecked,
     },
@@ -110,13 +87,11 @@ const nextConfig = [
         rules: {
             ...reactPlugin.configs.recommended.rules,
             ...reactPlugin.configs['jsx-runtime'].rules,
-            /* eslint-disable @typescript-eslint/no-unsafe-member-access */
             ...reactHooksPlugin.configs.recommended.rules,
             ...nextPlugin.configs.recommended.rules,
             // this is the nextjs strict mode
             ...nextPlugin.configs['core-web-vitals'].rules,
             ...importPlugin.configs.recommended.rules,
-            /* eslint-enable @typescript-eslint/no-unsafe-member-access */
             //...jsxA11yPlugin.configs.recommended.rules,
             // OR more strict a11y rules
             ...jsxA11yPlugin.configs.strict.rules,
@@ -125,13 +100,13 @@ const nextConfig = [
             'react/no-unknown-property': 'off',
             'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
+            'react/jsx-no-target-blank': 'off',
             'jsx-a11y/alt-text': ['warn', { elements: ['img'], img: ['Image'], },],
             'jsx-a11y/aria-props': 'warn',
             'jsx-a11y/aria-proptypes': 'warn',
             'jsx-a11y/aria-unsupported-elements': 'warn',
             'jsx-a11y/role-has-required-aria-props': 'warn',
             'jsx-a11y/role-supports-aria-props': 'warn',
-            'react/jsx-no-target-blank': 'off',
         } as FlatConfig.Rules,
         settings: {
             'react': {
@@ -142,40 +117,36 @@ const nextConfig = [
                 typescript: {
                     alwaysTryTypes: true
                 }
-            },
+            }
         },
     }
 ] as FlatConfig.Config[]
 
-const mdxConfig = [
-    // https://github.com/mdx-js/eslint-mdx/blob/d6fc093fb32ab58fb226e8cf42ac77399b8a4758/README.md#flat-config
+const stylisticConfig = [
     {
-        name: 'custom/mdx/recommended',
-        files: ['**/*.mdx'],
-        ...mdxPlugin.flat,
-        processor: mdxPlugin.createRemarkProcessor({
-            // I disabled linting code blocks
-            // as I was having performance issues
-            lintCodeBlocks: false,
-            languageMapper: {},
-        }),
-    },
-    {
-        name: 'custom/mdx/code-blocks',
-        files: ['**/*.mdx'],
-        ...mdxPlugin.flatCodeBlocks,
-        rules: {
-            ...mdxPlugin.flatCodeBlocks.rules,
-            'no-var': 'error',
-            'prefer-const': 'error',
+        name: 'custom/stylistic/recommended',
+        files: ['**/*.ts?(x)'],
+        // no files for this config as we want to apply it to all files
+        plugins: {
+            '@stylistic': stylisticPlugin,
         },
-    },
+        rules: {
+            // this removes all legacy rules from eslint, typescript-eslint and react
+            ...stylisticPlugin.configs['disable-legacy'].rules,
+            // this adds the recommended rules from stylistic
+            ...stylisticPlugin.configs['recommended-flat'].rules,
+            // custom rules
+            '@stylistic/indent': ['warn', 4],
+            '@stylistic/quotes': ['warn', 'single'],
+            '@stylistic/semi': ['warn', 'never'],
+        } as FlatConfig.Rules,
+    }
 ] as FlatConfig.Config[]
 
 export default [
-    ...ignoresConfig,
     ...eslintConfig,
+    ...ignoresConfig,
     ...tseslintConfig,
-    ...mdxConfig,
     ...nextConfig,
+    ...stylisticConfig,
 ] satisfies FlatConfig.Config[]
