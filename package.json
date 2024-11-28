@@ -27,8 +27,6 @@
     },
     "devDependencies": {
         "@eslint/js": "9.15.0",
-        "@stylistic/eslint-plugin": "2.11.0",
-        "@stylistic/eslint-plugin-ts": "2.11.0",
         "@types/eslint-plugin-jsx-a11y": "6.10.0",
         "@types/node": "22.10.0",
         "@types/react": "npm:types-react@19.0.0-rc.1",
