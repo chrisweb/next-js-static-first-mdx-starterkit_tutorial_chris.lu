@@ -9,6 +9,7 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
 // @ts-expect-error this package has no types
 import nextPlugin from '@next/eslint-plugin-next'
+import * as mdxPlugin from 'eslint-plugin-mdx'
 
 const eslintConfig = [
     {
@@ -119,9 +120,35 @@ const nextConfig = [
     }
 ] as FlatConfig.Config[]
 
+const mdxConfig = [
+    // https://github.com/mdx-js/eslint-mdx/blob/d6fc093fb32ab58fb226e8cf42ac77399b8a4758/README.md#flat-config
+    {
+        name: 'custom/mdx/recommended',
+        files: ['**/*.mdx'],
+        ...mdxPlugin.flat,
+        processor: mdxPlugin.createRemarkProcessor({
+            // I disabled linting code blocks
+            // as I was having performance issues
+            lintCodeBlocks: false,
+            languageMapper: {},
+        }),
+    },
+    {
+        name: 'custom/mdx/code-blocks',
+        files: ['**/*.mdx'],
+        ...mdxPlugin.flatCodeBlocks,
+        rules: {
+            ...mdxPlugin.flatCodeBlocks.rules,
+            'no-var': 'error',
+            'prefer-const': 'error',
+        },
+    },
+] as FlatConfig.Config[]
+
 export default [
     ...eslintConfig,
     ...ignoresConfig,
     ...tseslintConfig,
     ...nextConfig,
+    ...mdxConfig,
 ] satisfies FlatConfig.Config[]
