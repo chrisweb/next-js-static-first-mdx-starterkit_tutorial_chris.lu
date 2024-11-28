@@ -30,7 +30,6 @@ const nextConfig = (phase: string) => {
             // this is why it is currently commented out
             //mdxRs: true,
         },
-        // eslint-disable-next-line @typescript-eslint/require-await
         headers: async () => {
             return [
                 {
@@ -63,7 +62,6 @@ const securityHeadersConfig = (phase: string) => {
 
     const cspHeader = () => {
 
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         const upgradeInsecure = (phase !== PHASE_DEVELOPMENT_SERVER && !cspReportOnly) ? 'upgrade-insecure-requests;' : ''
 
         // reporting uri (CSP v1)
@@ -146,7 +144,6 @@ const securityHeadersConfig = (phase: string) => {
     const headers = [
         ...extraSecurityHeaders,
         {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             key: cspReportOnly ? 'Content-Security-Policy-Report-Only' : 'Content-Security-Policy',
             value: cspHeader().replace(/\n/g, ''),
         },

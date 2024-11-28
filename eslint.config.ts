@@ -9,7 +9,6 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
 // @ts-expect-error this package has no types
 import nextPlugin from '@next/eslint-plugin-next'
-import stylisticPlugin from '@stylistic/eslint-plugin'
 
 const eslintConfig = [
     {
@@ -78,11 +77,9 @@ const nextConfig = [
         plugins: {
             'react': reactPlugin,
             'jsx-a11y': jsxA11yPlugin,
-            /* eslint-disable @typescript-eslint/no-unsafe-assignment */
             'react-hooks': reactHooksPlugin,
             '@next/next': nextPlugin,
             'import': importPlugin,
-            /* eslint-enable @typescript-eslint/no-unsafe-assignment */
         },
         rules: {
             ...reactPlugin.configs.recommended.rules,
@@ -101,7 +98,7 @@ const nextConfig = [
             'react/react-in-jsx-scope': 'off',
             'react/prop-types': 'off',
             'react/jsx-no-target-blank': 'off',
-            'jsx-a11y/alt-text': ['warn', { elements: ['img'], img: ['Image'], },],
+            'jsx-a11y/alt-text': ['warn', { elements: ['img'], img: ['Image'] }],
             'jsx-a11y/aria-props': 'warn',
             'jsx-a11y/aria-proptypes': 'warn',
             'jsx-a11y/aria-unsupported-elements': 'warn',
@@ -122,31 +119,9 @@ const nextConfig = [
     }
 ] as FlatConfig.Config[]
 
-const stylisticConfig = [
-    {
-        name: 'custom/stylistic/recommended',
-        files: ['**/*.ts?(x)'],
-        // no files for this config as we want to apply it to all files
-        plugins: {
-            '@stylistic': stylisticPlugin,
-        },
-        rules: {
-            // this removes all legacy rules from eslint, typescript-eslint and react
-            ...stylisticPlugin.configs['disable-legacy'].rules,
-            // this adds the recommended rules from stylistic
-            ...stylisticPlugin.configs['recommended-flat'].rules,
-            // custom rules
-            '@stylistic/indent': ['warn', 4],
-            '@stylistic/quotes': ['warn', 'single'],
-            '@stylistic/semi': ['warn', 'never'],
-        } as FlatConfig.Rules,
-    }
-] as FlatConfig.Config[]
-
 export default [
     ...eslintConfig,
     ...ignoresConfig,
     ...tseslintConfig,
     ...nextConfig,
-    ...stylisticConfig,
 ] satisfies FlatConfig.Config[]
