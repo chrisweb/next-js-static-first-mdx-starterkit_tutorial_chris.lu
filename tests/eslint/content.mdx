@@ -1,0 +1,10 @@
+# title
+
+# Another level 1 headline (it should trigger a linting error)
+
+<img src="../../../public/assets/images/chris-octocat-1677036079874.png" />
+
+The linting errors that should be shown in this file:
+- On line 3: Unexpected duplicate toplevel heading (remark-lint-no-multiple-toplevel-headings)
+- On line 5: error no image element use next/image and a second error from jsx-a11y/alt-text because of the missing alt attribute (which you should always set but you can leave it empty if the image is decorative)
+- On line 10 (this line): should trigger: Unexpected missing final newline character, the last character of this line should have a wavy underline (remark-lint-final-newline)
