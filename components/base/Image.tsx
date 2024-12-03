@@ -48,6 +48,7 @@ const BaseImage: React.FC<ImageProps> = (props) => {
                             height: 'auto',
                         }}
                         sizes="(max-width: 1120px) 100vw, 1088px"
+                        placeholder="blur"
                         {...newImageProps}
                     />
                 </>
