@@ -1,6 +1,8 @@
 import type { MDXComponents } from 'mdx/types'
 import BaseLink from '@/components/base/Link'
 import type { Route } from 'next'
+import BaseImage from '@/components/base/Image'
+import type { ImageProps } from 'next/image'
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -21,6 +23,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 {children}
             </BaseLink>
         ),
+        img: (props) => (<BaseImage {...props as ImageProps} />),
         ...components,
     }
 }

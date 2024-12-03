@@ -23,7 +23,8 @@
         "@types/mdx": "2.0.13",
         "next": "15.0.3",
         "react": "19.0.0-rc-b01722d5-20241114",
-        "react-dom": "19.0.0-rc-b01722d5-20241114"
+        "react-dom": "19.0.0-rc-b01722d5-20241114",
+        "rehype-mdx-import-media": "1.2.0"
     },
     "devDependencies": {
         "@eslint/js": "9.16.0",
