@@ -1,0 +1,122 @@
+:root {
+    /* colors */
+    --background-dark-value: 288 23% 20%;
+    --background-dark-color: hsl(var(--background-dark-value));
+    --text-dark-value: 19 71% 97%;
+    --text-dark-color: hsl(var(--text-dark-value));
+    --primary-dark-value: 315 60% 82%;
+    --primary-dark-color: hsl(var(--primary-dark-value));
+    --secondary-dark-value: 211 63% 83%;
+    --secondary-dark-color: hsl(var(--secondary-dark-value));
+    /* sizes */
+    --spacing: 16px;
+    --maxWidth: 1120px;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    tab-size: 4;
+    background-color: var(--background-dark-color);
+    color: var(--text-dark-color);
+    font-size: 100%;
+}
+
+body {
+    /* remove any margin that browsers add to body */
+    margin: 0;
+}
+
+header {
+    margin-bottom: var(--spacing);
+}
+
+footer {
+    margin-top: var(--spacing);
+    min-height: calc(var(--spacing) * 2);
+}
+
+main {
+    display: flex;
+    max-width: var(--maxWidth);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: calc(var(--spacing) * 4);
+}
+
+/* on small screens */
+@media all and (max-width: 768px) {
+    main {
+        margin-bottom: calc(var(--spacing) * 2);
+        /* place one under the other */
+        flex-flow: column;
+    }
+}
+
+article,
+section {
+    padding: var(--spacing);
+    width: 100%;
+}
+
+p {
+    margin-block: 1em;
+}
+
+a {
+    color: var(--primary-dark-color);
+}
+
+a:hover {
+    color: var(--secondary-dark-color);
+}
+
+h1 {
+    font-size: 6rem;
+    line-height: 1.167;
+}
+
+h2 {
+    font-size: 3.75rem;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 3rem;
+    line-height: 1.167;
+}
+
+h4 {
+    font-size: 2.125rem;
+    line-height: 1.235;
+}
+
+h5 {
+    font-size: 1.5rem;
+    line-height: 1.334;
+}
+
+h6 {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+h1 {
+    margin-block: 0 1em;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-block: 1.5em 1em;
+}
