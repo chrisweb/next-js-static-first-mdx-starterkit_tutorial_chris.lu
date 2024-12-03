@@ -1,4 +1,5 @@
 import type { Route } from 'next'
+import Link from 'next/link'
 
 interface IMainMenuItem {
     pathname: string
@@ -17,13 +18,13 @@ const HeaderNavigation: React.FC = () => {
             <nav id="navigation">
                 {mainMenuItems.map((menuItem) => {
                     return (
-                        <a
+                        <Link
                             href={menuItem.pathname as Route}
                             key={menuItem.pathname}
                             title={menuItem.text}
                         >
                             {menuItem.text}
-                        </a>
+                        </Link>
                     )
                 })}
             </nav>
