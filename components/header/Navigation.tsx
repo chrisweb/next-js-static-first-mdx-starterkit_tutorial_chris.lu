@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import type { Route } from 'next'
 import Link from 'next/link'
+import styles from './navigation.module.css'
 
 interface IMainMenuItem {
     pathname: string
@@ -24,13 +25,13 @@ const HeaderNavigation: React.FC = () => {
 
         if (menuItemPathname.length > 1) {
             if (currentPagePathname.startsWith(menuItemPathname)) {
-                isActiveClass = 'active'
+                isActiveClass = styles.active
             }
         } else {
             // exception for homepage path which is "/"
             // in that case the page path needs to be equal
             if (currentPagePathname === menuItemPathname) {
-                isActiveClass = 'active'
+                isActiveClass = styles.active
             }
         }
 
@@ -39,13 +40,13 @@ const HeaderNavigation: React.FC = () => {
 
     return (
         <>
-            <nav id="navigation">
+            <nav id="navigation" className={styles.navigation}>
                 {mainMenuItems.map((menuItem) => {
                     return (
                         <Link
                             href={menuItem.pathname as Route}
                             key={menuItem.pathname}
-                            className={isActiveCheck(menuItem.pathname)}
+                            className={`${isActiveCheck(menuItem.pathname)} ${styles.link}`}
                             title={menuItem.text}
                         >
                             {menuItem.text}
