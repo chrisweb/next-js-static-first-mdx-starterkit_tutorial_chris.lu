@@ -3,3 +3,10 @@
     border: none;
     padding: 0;
 }
+
+.core {
+    --button-padding: 6px;
+
+    padding: var(--button-padding);
+    border: 2px dashed magenta;
+}
