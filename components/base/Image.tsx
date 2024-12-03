@@ -47,6 +47,7 @@ const BaseImage: React.FC<ImageProps> = (props) => {
                             width: '100%',
                             height: 'auto',
                         }}
+                        sizes="(max-width: 1120px) 100vw, 1088px"
                         {...newImageProps}
                     />
                 </>
