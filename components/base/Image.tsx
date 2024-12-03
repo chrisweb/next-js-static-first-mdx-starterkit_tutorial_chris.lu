@@ -43,6 +43,10 @@ const BaseImage: React.FC<ImageProps> = (props) => {
                     {/* eslint-disable-next-line jsx-a11y/alt-text */}
                     <Image
                         priority
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                        }}
                         {...newImageProps}
                     />
                 </>
