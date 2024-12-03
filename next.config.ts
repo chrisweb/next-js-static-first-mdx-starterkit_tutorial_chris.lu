@@ -46,6 +46,10 @@ const nextConfig = (phase: string) => {
             // which is why we disable the default next lint (during builds) here
             ignoreDuringBuilds: true,
         },
+        images: {
+            // file formats for next/image
+            formats: ['image/avif', 'image/webp'],
+        },
     }
 
     return withMDX(nextConfigOptions)
