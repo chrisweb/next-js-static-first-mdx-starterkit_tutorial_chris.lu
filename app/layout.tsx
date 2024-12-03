@@ -1,5 +1,6 @@
 import './global.css'
 import { Metadata } from 'next'
+import HeaderNavigation from '@/components/header/Navigation'
 
 export const metadata: Metadata = {
     title: 'Next.js',
@@ -15,7 +16,8 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <header>
-                    <p>My Header</p>
+                    <HeaderNavigation />
+                    <p>{new Date().toString()}</p>
                 </header>
                 <main>{children}</main>
                 <footer>
