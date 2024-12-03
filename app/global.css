@@ -122,3 +122,12 @@ h5,
 h6 {
     margin-block: 1.5em 1em;
 }
+
+.iconSmall {
+    margin-left: calc(var(--spacing) / 4);
+    display: inline-block;
+    fill: currentcolor;
+    font-size: 1em;
+    height: 1em;
+    vertical-align: -.125em;
+}

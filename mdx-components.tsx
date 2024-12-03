@@ -1,4 +1,6 @@
 import type { MDXComponents } from 'mdx/types'
+import BaseLink from '@/components/base/Link'
+import type { Route } from 'next'
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -13,6 +15,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <ul className="listContainer" {...props}>
                 {children}
             </ul>
+        ),
+        a: ({ children, href, ...props }) => (
+            <BaseLink href={href as Route} {...props}>
+                {children}
+            </BaseLink>
         ),
         ...components,
     }
