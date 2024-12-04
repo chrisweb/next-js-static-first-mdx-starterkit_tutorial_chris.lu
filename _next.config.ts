@@ -3,6 +3,7 @@ import type { NextConfig } from 'next'
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
 import createMdx from '@next/mdx'
 import rehypeMDXImportMedia from 'rehype-mdx-import-media'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 const nextConfig = (phase: string) => {
 
@@ -11,7 +12,7 @@ const nextConfig = (phase: string) => {
         options: {
             // optional remark and rehype plugins
             remarkPlugins: [],
-            rehypePlugins: [rehypeMDXImportMedia],
+            rehypePlugins: [rehypePrettyCode, rehypeMDXImportMedia],
         },
     })
 

@@ -24,7 +24,9 @@
         "next": "15.0.3",
         "react": "19.0.0-rc-b01722d5-20241114",
         "react-dom": "19.0.0-rc-b01722d5-20241114",
-        "rehype-mdx-import-media": "1.2.0"
+        "rehype-mdx-import-media": "1.2.0",
+        "rehype-pretty-code": "0.14.0",
+        "shiki": "1.24.0"
     },
     "devDependencies": {
         "@eslint/js": "9.16.0",
