@@ -1,6 +1,6 @@
 import { withSentryConfig } from '@sentry/nextjs';
 //import type { NextConfig } from 'next'
-import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js'
 import createMdx from '@next/mdx'
 import rehypeMDXImportMedia from 'rehype-mdx-import-media'
 import rehypePrettyCode from 'rehype-pretty-code'
