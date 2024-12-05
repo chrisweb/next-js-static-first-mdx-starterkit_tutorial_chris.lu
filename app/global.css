@@ -202,3 +202,7 @@ code[data-line-numbers-max-digits="3"]>[data-line]::before {
 [data-highlighted-chars] {
     background-color: #432936;
 }
+
+[data-highlighted-chars][data-chars-id="mySpecialHighlight"] {
+    background-color: #874691;
+}
