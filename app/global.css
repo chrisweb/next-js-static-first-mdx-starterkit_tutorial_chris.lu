@@ -193,3 +193,12 @@ code[data-line-numbers-max-digits="3"]>[data-line]::before {
     background-color: #58404c;
     border-left-color: #d6277f;
 }
+
+[data-highlighted-line][data-highlighted-line-id="errorLine"] {
+    background-color: #6b2424;
+    border-left-color: #ff003d;
+}
+
+[data-highlighted-chars] {
+    background-color: #432936;
+}
