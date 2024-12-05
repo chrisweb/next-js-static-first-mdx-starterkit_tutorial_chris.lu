@@ -206,3 +206,14 @@ code[data-line-numbers-max-digits="3"]>[data-line]::before {
 [data-highlighted-chars][data-chars-id="mySpecialHighlight"] {
     background-color: #874691;
 }
+
+/* inline code custom styling */
+[data-rehype-pretty-code-figure]>code {
+    border-radius: 5px;
+    padding: 0 4px;
+    background-color: #27162b;
+}
+
+[data-rehype-pretty-code-figure]>code [data-line] {
+    padding: 0px;
+}

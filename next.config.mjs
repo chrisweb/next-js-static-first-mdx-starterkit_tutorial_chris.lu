@@ -17,6 +17,7 @@ const nextConfig = (phase/*: string*/) => {
         keepBackground: false,
         defaultLang: {
             block: 'js',
+            inline: 'js',
         },
     }
 
