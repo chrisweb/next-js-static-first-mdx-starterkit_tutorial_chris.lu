@@ -15,6 +15,9 @@ const nextConfig = (phase/*: string*/) => {
     const rehypePrettyCodeOptions = {
         theme: JSON.parse(themeFileContent),
         keepBackground: false,
+        defaultLang: {
+            block: 'js',
+        },
     }
 
     const withMDX = createMdx({
