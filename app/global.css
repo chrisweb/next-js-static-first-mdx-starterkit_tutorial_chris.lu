@@ -235,3 +235,12 @@ code[data-line-numbers-max-digits="3"]>[data-line]::before {
 #articleToc ul:first-child {
     padding-inline: 0;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--maxWidth);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: calc(var(--spacing) * 4);
+}
