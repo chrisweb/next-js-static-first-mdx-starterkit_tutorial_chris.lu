@@ -4,6 +4,7 @@ import type { Route } from 'next'
 import BaseImage from '@/components/base/Image'
 import type { ImageProps } from 'next/image'
 import TocHighlight from '@/components/toc/Highlight'
+import BaseCheckbox from '@/components/base/Checkbox'
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -46,6 +47,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 </>
             )
         },
+        input: (props) => props?.type === 'checkbox' ? (<BaseCheckbox {...props} />) : (<input {...props} />),
         ...components,
     }
 }
