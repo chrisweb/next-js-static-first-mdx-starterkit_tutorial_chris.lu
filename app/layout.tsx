@@ -9,6 +9,12 @@ export const metadata: Metadata = {
         default: 'Home | example.com',
     },
     description: 'My description',
+    openGraph: {
+        url: 'https://example.com/',
+        siteName: 'My website name',
+        locale: 'en_US',
+        type: 'website',
+    },
 }
 
 const kablammo = Kablammo({
