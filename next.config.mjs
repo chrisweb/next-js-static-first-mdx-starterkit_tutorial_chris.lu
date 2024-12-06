@@ -50,6 +50,10 @@ const nextConfig = (phase/*: string*/) => {
             // optional remark and rehype plugins
             remarkPlugins: [remarkGfm, [remarkTableOfContents, remarkTableOfContentsOptions]],
             rehypePlugins: [rehypeSlug, [rehypePrettyCode, rehypePrettyCodeOptions], rehypeMDXImportMedia],
+            remarkRehypeOptions: {
+                footnoteLabel: 'Notes',
+                footnoteLabelTagName: 'span',
+            },
         },
     })
 
