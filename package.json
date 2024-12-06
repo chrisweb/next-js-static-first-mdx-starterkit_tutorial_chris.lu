@@ -18,32 +18,33 @@
     },
     "dependencies": {
         "@mdx-js/loader": "3.1.0",
-        "@next/mdx": "15.0.3",
+        "@next/mdx": "15.0.4-canary.45",
         "@sentry/nextjs": "8.42.0",
         "@types/mdx": "2.0.13",
         "material-theme": "github:Binaryify/OneDark-Pro",
-        "next": "15.0.3",
-        "react": "19.0.0-rc-b01722d5-20241114",
-        "react-dom": "19.0.0-rc-b01722d5-20241114",
+        "next": "15.0.4-canary.45",
+        "react": "19.0.0-rc-de68d2f4-20241204",
+        "react-dom": "19.0.0-rc-de68d2f4-20241204",
         "rehype-mdx-import-media": "1.2.0",
         "rehype-pretty-code": "0.14.0",
         "rehype-slug": "6.0.0",
+        "remark-table-of-contents": "2.1.0",
         "shiki": "1.24.0"
     },
     "devDependencies": {
         "@eslint/js": "9.16.0",
         "@types/eslint-plugin-jsx-a11y": "6.10.0",
         "@types/node": "22.10.1",
-        "@types/react": "npm:types-react@19.0.0-rc.1",
-        "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+        "@types/react": "npm:types-react@rc",
+        "@types/react-dom": "npm:types-react-dom@rc",
         "eslint": "9.16.0",
-        "eslint-config-next": "15.0.3",
+        "eslint-config-next": "15.0.4-canary.45",
         "eslint-import-resolver-typescript": "3.7.0",
         "eslint-plugin-import": "2.31.0",
         "eslint-plugin-jsx-a11y": "6.10.2",
         "eslint-plugin-mdx": "3.1.5",
         "eslint-plugin-react": "7.37.2",
-        "eslint-plugin-react-hooks": "5.0.0",
+        "eslint-plugin-react-hooks": "5.1.0",
         "jiti": "2.4.1",
         "remark-preset-lint-consistent": "6.0.0",
         "remark-preset-lint-markdown-style-guide": "6.0.0",
@@ -52,8 +53,10 @@
         "typescript-eslint": "8.17.0"
     },
     "overrides": {
-        "react": "19.0.0-rc-b01722d5-20241114",
-        "react-dom": "19.0.0-rc-b01722d5-20241114",
-        "next": "15.0.3"
+        "react": "19.0.0-rc-de68d2f4-20241204",
+        "react-dom": "19.0.0-rc-de68d2f4-20241204",
+        "next": "15.0.4-canary.45",
+        "@types/react": "npm:types-react@rc",
+        "@types/react-dom": "npm:types-react-dom@rc"
     }
 }
