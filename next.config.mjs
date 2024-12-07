@@ -118,10 +118,11 @@ const securityHeadersConfig = (phase/*: string*/) => {
         // reporting uri (CSP v1)
         const reportCSPViolations = `report-uri ${reportingUrl};`
 
-        // we commented out the directive from defaultCSPDirectives
-        // because of vercel analytics and speed insights:
-        //require-trusted-types-for 'script';
-
+        // we commented out the trusted types directive:
+        // require-trusted-types-for 'script';
+        // because of the following error in the browser console:
+        // This document requires 'TrustedScript' assignment
+        
         // worker-src is for sentry replay
         // child-src is because safari <= 15.4 does not support worker-src
         const defaultCSPDirectives = `
