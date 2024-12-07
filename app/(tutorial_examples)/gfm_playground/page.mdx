@@ -1,8 +1,23 @@
+---
+title: GFM playground page
+keywords: ['gfm', 'playground', 'frontmatter', 'mdx']
+published: 2024-05-24T19:14:23.792Z
+modified: 2024-05-24T19:14:23.792Z
+permalink: http://localhost:3000/gfm_playground
+siteName: My website name
+---
+
 export const metadata = {
-    title: 'GFM playground page',
+    title: frontmatter.title,
+    keywords: frontmatter.keywords,
     openGraph: {
-        url: 'https://example.com/tutorial_examples/gfm_playground',
-    },
+        url: frontmatter.permalink,
+        siteName: frontmatter.siteName,
+        type: 'article',
+        publishedTime: frontmatter.published,
+        modifiedTime: frontmatter.modified,
+        tags: frontmatter.keywords,
+    }
 }
 
 <div id="core">
@@ -12,11 +27,11 @@ export const metadata = {
 ~~strikethrough~~
 
 Table:
-| Left    | Right   |
-| -------- | ------- |
-| Foo       | Bar |
-| ~~strikethrough~~ | 😃 |
-| `code` | [external link](https://google.com) |
+| Left              | Right                               |
+| --------          | -------                             |
+| Foo               | Bar                                 |
+| ~~strikethrough~~ | 😃                                  |
+| `code`            | [external link](https://google.com) |
 
 Autolink: https://www.example.com
 
@@ -25,7 +40,6 @@ Tasklist:
 * [ ] bar  
 
 Example text with a note.[^1]  
-[^1]: This is the text of the note, [it can be a link too](https://www.example.com)  
 
 > [!NOTE]  
 > Highlights information that users should take into account, even when skimming.
@@ -41,6 +55,8 @@ Example text with a note.[^1]
 
 > [!CAUTION]  
 > Negative potential consequences of an action.
+
+[^1]: This is the text of the note, [it can be a link too](https://www.example.com)  
 
 </article>
 
