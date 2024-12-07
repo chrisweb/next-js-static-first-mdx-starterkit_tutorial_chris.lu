@@ -13,11 +13,11 @@ import remarkLintListItemSpacing from 'remark-lint-list-item-spacing'
 
 const config = {
     plugins: [
-        // presets
+        // the presets
         remarkPresetLintRecommended,
         remarkPresetLintConsistent,
         remarkPresetLintMarkdownStyleGuide,
-        // rules
+        // and then the rules customizations
         // https://www.npmjs.com/package/remark-lint-maximum-heading-length
         [remarkLintMaximumHeadingLength, [1, 100]],
         // https://www.npmjs.com/package/remark-lint-unordered-list-marker-style
