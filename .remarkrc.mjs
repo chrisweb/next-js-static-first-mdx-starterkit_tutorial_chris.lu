@@ -39,6 +39,7 @@ const config = {
         // https://www.npmjs.com/package/remark-lint-list-item-spacing
         [remarkLintListItemSpacing, false],
         // https://www.npmjs.com/package/remark-lint-no-literal-urls
+        // disable rule as we have gfm autolink support
         [remarkLintNoLiteralUrls, false],
     ]
 }
