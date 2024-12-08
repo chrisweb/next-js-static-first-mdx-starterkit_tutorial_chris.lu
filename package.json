@@ -23,6 +23,7 @@
         "@types/mdx": "2.0.13",
         "@vercel/analytics": "1.4.1",
         "@vercel/speed-insights": "1.1.0",
+        "glob": "11.0.0",
         "material-theme": "github:Binaryify/OneDark-Pro",
         "next": "15.0.4",
         "react": "19.0.0",
@@ -35,7 +36,8 @@
         "remark-gfm": "4.0.0",
         "remark-mdx-frontmatter": "5.0.0",
         "remark-table-of-contents": "2.1.0",
-        "shiki": "1.24.0"
+        "shiki": "1.24.0",
+        "vfile-matter": "5.0.0"
     },
     "devDependencies": {
         "@eslint/js": "9.16.0",
