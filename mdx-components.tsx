@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import BaseLink from '@/components/base/Link'
 import type { Route } from 'next'
@@ -11,22 +12,28 @@ import BaseCheckbox from '@/components/base/Checkbox'
 // React component you want, including components from
 // other libraries.
 
+type ListPropsType = ComponentPropsWithoutRef<'ul'>
+type AnchorPropsType = ComponentPropsWithoutRef<'a'>
+// Note: ImageProps get imported from 'next/image'
+type AsidePropsType = ComponentPropsWithoutRef<'aside'>
+type InputPropsType = ComponentPropsWithoutRef<'input'>
+
 // This file is required to use MDX in `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         // Allows customizing built-in components, e.g. to add styling.
-        ul: ({ children, ...props }) => (
+        ul: ({ children, ...props }: ListPropsType) => (
             <ul className="listContainer" {...props}>
                 {children}
             </ul>
         ),
-        a: ({ children, href, ...props }) => (
+        a: ({ children, href, ...props }: AnchorPropsType) => (
             <BaseLink href={href as Route} {...props}>
                 {children}
             </BaseLink>
         ),
         img: (props) => (<BaseImage {...props as ImageProps} />),
-        aside: ({ children, ...props }) => {
+        aside: ({ children, ...props }: AsidePropsType) => {
             const tocHighlightProps = {
                 headingsToObserve: 'h1, h2, h3',
                 rootMargin: '-5% 0px -50% 0px',
@@ -47,7 +54,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 </>
             )
         },
-        input: (props) => props?.type === 'checkbox' ? (<BaseCheckbox {...props} />) : (<input {...props} />),
+        input: (props: InputPropsType) => {
+            if (props?.type === 'checkbox') {
+                return <BaseCheckbox {...props} />
+            } else {
+                return <input {...props} />
+            }
+        },
         ...components,
     }
 }
