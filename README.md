@@ -1,4 +1,8 @@
-# MY_PROJECT
+# "Next.js static first MDX starterkit" source code
+
+This repository contains all the source code for the "[Next.js static first MDX starterkit](https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit)" tutorial
+
+Every branch of this repository corresponds to a section of the tutorial.
 
 ## npm commands (package.json scripts)
 
