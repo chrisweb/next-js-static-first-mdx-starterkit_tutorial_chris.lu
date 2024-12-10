@@ -67,7 +67,7 @@ export default async function OGImage(props: OpenGraphImageProps) {
                     style={{
                         position: 'absolute',
                         width: '100%',
-                        height: '200',
+                        height: '200px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
