@@ -1,0 +1,317 @@
+:root {
+    /* colors */
+    --background-dark-value: 288 23% 20%;
+    --background-dark-color: hsl(var(--background-dark-value));
+    --text-dark-value: 19 71% 97%;
+    --text-dark-color: hsl(var(--text-dark-value));
+    --primary-dark-value: 315 60% 82%;
+    --primary-dark-color: hsl(var(--primary-dark-value));
+    --secondary-dark-value: 211 63% 83%;
+    --secondary-dark-color: hsl(var(--secondary-dark-value));
+    /* sizes */
+    --spacing: 16px;
+    --maxWidth: 1120px;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    tab-size: 4;
+    background-color: var(--background-dark-color);
+    color: var(--text-dark-color);
+    font-size: 100%;
+}
+
+body {
+    /* remove any margin that browsers add to body */
+    margin: 0;
+    /* compensate for the fixed navigation height */
+    padding-top: 60px;
+}
+
+header {
+    margin-bottom: var(--spacing);
+}
+
+footer {
+    margin-top: var(--spacing);
+    min-height: calc(var(--spacing) * 2);
+}
+
+main {
+    display: flex;
+    max-width: var(--maxWidth);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: calc(var(--spacing) * 4);
+}
+
+/* on small screens */
+@media all and (max-width: 768px) {
+    main {
+        margin-bottom: calc(var(--spacing) * 2);
+        /* place one under the other */
+        flex-flow: column;
+    }
+}
+
+article,
+section {
+    padding: var(--spacing);
+    width: 100%;
+}
+
+p {
+    margin-block: 1em;
+}
+
+a {
+    color: var(--primary-dark-color);
+}
+
+a:hover {
+    color: var(--secondary-dark-color);
+}
+
+h1 {
+    font-size: 6rem;
+    line-height: 1.167;
+}
+
+h2 {
+    font-size: 3.75rem;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 3rem;
+    line-height: 1.167;
+}
+
+h4 {
+    font-size: 2.125rem;
+    line-height: 1.235;
+}
+
+h5 {
+    font-size: 1.5rem;
+    line-height: 1.334;
+}
+
+h6 {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+h1 {
+    margin-block: 0 1em;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-block: 1.5em 1em;
+}
+
+.iconSmall {
+    margin-left: calc(var(--spacing) / 4);
+    display: inline-block;
+    fill: currentcolor;
+    font-size: 1em;
+    height: 1em;
+    vertical-align: -.125em;
+}
+
+[data-rehype-pretty-code-figure],
+[data-rehype-pretty-code-figure]>pre {
+    margin: 0;
+    padding: 0;
+}
+
+[data-rehype-pretty-code-figure]>pre {
+    width: 100%;
+    overflow: auto;
+    padding: var(--spacing);
+}
+
+[data-rehype-pretty-code-figure],
+[data-rehype-pretty-code-figure]>pre {
+    margin: 0;
+    padding: 0;
+}
+
+[data-rehype-pretty-code-figure]>pre {
+    width: 100%;
+    overflow: auto;
+    padding: var(--spacing);
+    background-color: #27162b;
+}
+
+/* recommended by https://rehype-pretty-code.netlify.app/ */
+code[data-line-numbers] {
+    counter-reset: line;
+}
+
+code[data-line-numbers]>[data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+
+    /* Other styling */
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: gray;
+}
+
+code[data-line-numbers-max-digits="2"]>[data-line]::before {
+    width: 2rem;
+}
+
+code[data-line-numbers-max-digits="3"]>[data-line]::before {
+    width: 3rem;
+}
+
+/* code blocks custom styling */
+[data-line] {
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: transparent;
+}
+
+[data-highlighted-line] {
+    background-color: #58404c;
+    border-left-color: #d6277f;
+}
+
+[data-highlighted-line][data-highlighted-line-id="errorLine"] {
+    background-color: #6b2424;
+    border-left-color: #ff003d;
+}
+
+[data-highlighted-chars] {
+    background-color: #432936;
+}
+
+[data-highlighted-chars][data-chars-id="mySpecialHighlight"] {
+    background-color: #874691;
+}
+
+/* inline code custom styling */
+[data-rehype-pretty-code-figure]>code {
+    border-radius: 5px;
+    padding: 0 4px;
+    background-color: #27162b;
+}
+
+[data-rehype-pretty-code-figure]>code [data-line] {
+    padding: 0px;
+}
+
+#articleToc {
+    width: 100%;
+    max-width: 400px;
+}
+
+#articleToc>nav {
+    position: sticky;
+    top: calc(var(--spacing) + 60px);
+}
+
+#articleToc ul {
+    list-style: none;
+}
+
+#articleToc ul:first-child {
+    padding-inline: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    max-width: var(--maxWidth);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: calc(var(--spacing) * 4);
+}
+
+.markdown-alert {
+    --github-alert-default-color: rgb(48, 54, 61);
+    --github-alert-note-color: rgb(31, 111, 235);
+    --github-alert-tip-color: rgb(35, 134, 54);
+    --github-alert-important-color: rgb(137, 87, 229);
+    --github-alert-warning-color: rgb(158, 106, 3);
+    --github-alert-caution-color: rgb(248, 81, 73);
+
+    padding: 0.5rem 1rem;
+    margin-bottom: 16px;
+    border-left: 0.25em solid var(--github-alert-default-color);
+}
+
+.markdown-alert>:first-child {
+    margin-top: 0;
+}
+
+.markdown-alert>:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-alert-note {
+    border-left-color: var(--github-alert-note-color);
+}
+
+.markdown-alert-tip {
+    border-left-color: var(--github-alert-tip-color);
+}
+
+.markdown-alert-important {
+    border-left-color: var(--github-alert-important-color);
+}
+
+.markdown-alert-warning {
+    border-left-color: var(--github-alert-warning-color);
+}
+
+.markdown-alert-caution {
+    border-left-color: var(--github-alert-caution-color);
+}
+
+.markdown-alert-title {
+    display: flex;
+    margin-bottom: 4px;
+    align-items: center;
+}
+
+.markdown-alert-title>svg {
+    margin-right: 8px;
+}
+
+.markdown-alert-note .markdown-alert-title {
+    color: var(--github-alert-note-color);
+}
+
+.markdown-alert-tip .markdown-alert-title {
+    color: var(--github-alert-tip-color);
+}
+
+.markdown-alert-important .markdown-alert-title {
+    color: var(--github-alert-important-color);
+}
+
+.markdown-alert-warning .markdown-alert-title {
+    color: var(--github-alert-warning-color);
+}
+
+.markdown-alert-caution .markdown-alert-title {
+    color: var(--github-alert-caution-color);
+}

@@ -1,0 +1,22 @@
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    background-color: hsl(var(--background-dark-value) / 0.9);
+    border-bottom: 1px solid hsl(var(--text-dark-value) / 0.5);
+    position: fixed;
+    top: 0;
+}
+
+.link {
+    padding: 0 var(--spacing);
+    font-size: xx-large;
+    text-decoration: none;
+    font-family: var(--font-kablammo);
+}
+
+.active {
+    font-weight: bold;
+}

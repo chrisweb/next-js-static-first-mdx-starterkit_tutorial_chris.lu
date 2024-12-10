@@ -1,0 +1,18 @@
+{
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "eslint.debug": true,
+    "eslint.options": {
+        "flags": ["unstable_ts_config"]
+    },
+    "eslint.validate": [
+        "markdown",
+        "mdx",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "files.associations": {
+        "*.mdx": "markdown"
+    }
+}
