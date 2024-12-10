@@ -19,7 +19,7 @@
     "dependencies": {
         "@mdx-js/loader": "3.1.0",
         "@next/mdx": "15.0.4",
-        "@sentry/nextjs": "8.42.0",
+        "@sentry/nextjs": "8.43.0",
         "@types/mdx": "2.0.13",
         "@vercel/analytics": "1.4.1",
         "@vercel/speed-insights": "1.1.0",
@@ -36,7 +36,7 @@
         "remark-gfm": "4.0.0",
         "remark-mdx-frontmatter": "5.0.0",
         "remark-table-of-contents": "2.1.0",
-        "shiki": "1.24.0",
+        "shiki": "1.24.2",
         "vfile-matter": "5.0.0"
     },
     "devDependencies": {
@@ -44,7 +44,7 @@
         "@types/eslint-plugin-jsx-a11y": "6.10.0",
         "@types/node": "22.10.1",
         "@types/react": "19.0.1",
-        "@types/react-dom": "19.0.1",
+        "@types/react-dom": "19.0.2",
         "eslint": "9.16.0",
         "eslint-config-next": "15.0.4",
         "eslint-import-resolver-typescript": "3.7.0",
@@ -58,6 +58,6 @@
         "remark-preset-lint-markdown-style-guide": "6.0.0",
         "remark-preset-lint-recommended": "7.0.0",
         "typescript": "5.7.2",
-        "typescript-eslint": "8.17.0"
+        "typescript-eslint": "8.18.0"
     }
 }
