@@ -26,8 +26,8 @@ Sentry.init({
 
     replaysOnErrorSampleRate: replaysOnErrorSampleRate,
 
-    // This sets the sample rate to be 10%. You may want this to be 100% while
-    // in development and sample at a lower rate in production
+    // on free plan lower (as limited to 50 per month)
+    // if you have a paid plan set it higher
     replaysSessionSampleRate: 0,
 
     // You can remove this option if you're not planning to use the Sentry Session Replay feature:
