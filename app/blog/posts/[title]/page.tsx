@@ -1,13 +1,13 @@
 import { sharedMetadata } from '@/shared/metadata'
 import { notFound } from 'next/navigation'
 
-const whitelist = ['foo'] as string[]
+const titlesAllowList = ['foo'] as string[]
 
 export function generateMetadata({ params }: BlogPostsProps) {
 
     let title = '' as string
 
-    if (whitelist.includes(params.title)) {
+    if (titlesAllowList.includes(params.title)) {
         title = params.title
     }
 
@@ -30,10 +30,10 @@ interface BlogPostsProps {
 export default function Blog({ params }: BlogPostsProps) {
 
     // as we are getting user data we need 
-    // to sanitize it or use a whitelist
+    // to sanitize it or use an allow list
     let title = '' as string
 
-    if (whitelist.includes(params.title)) {
+    if (titlesAllowList.includes(params.title)) {
         title = params.title
     } else {
         notFound()

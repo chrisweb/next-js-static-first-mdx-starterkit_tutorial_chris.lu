@@ -94,7 +94,7 @@ const securityHeadersConfig = (phase: string) => {
         `
 
         // when environment is preview enable unsafe-inline scripts for vercel preview feedback/comments feature
-        // and whitelist vercel's domains based on:
+        // and allow vercel's domains based on:
         // https://vercel.com/docs/workflow-collaboration/comments/specialized-usage#using-a-content-security-policy
         // and white-list vitals.vercel-insights
         // based on: https://vercel.com/docs/speed-insights#content-security-policy
