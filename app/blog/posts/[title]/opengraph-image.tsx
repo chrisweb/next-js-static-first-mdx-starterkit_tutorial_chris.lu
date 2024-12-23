@@ -30,12 +30,10 @@ export default async function OGImage(props: OpenGraphImageProps) {
 
     const { title } = props.params
 
-    // Font
     const kablammoFont = fetch(
         new URL('../../../../public/fonts/Kablammo-Regular.ttf', import.meta.url)
     ).then((res) => res.arrayBuffer())
 
-    // Background Image
     const backgroundImage = await fetch(
         new URL('../../../../public/images/og_background.jpg', import.meta.url)
     ).then((res) => res.arrayBuffer())
