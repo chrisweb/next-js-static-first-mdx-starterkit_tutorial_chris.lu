@@ -3,13 +3,15 @@
 import * as Sentry from '@sentry/nextjs'
 import { useEffect } from 'react'
 
+interface GlobalErrorProps {
+    error: Error & { digest?: string }
+    reset: () => void
+}
+
 export default function GlobalError({
     error,
     reset,
-}: {
-    error: Error & { digest?: string }
-    reset: () => void
-}) {
+}: GlobalErrorProps) {
 
     useEffect(() => {
         // log the error to Sentry.io

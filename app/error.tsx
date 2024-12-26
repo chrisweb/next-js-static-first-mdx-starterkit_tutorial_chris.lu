@@ -3,7 +3,7 @@
 import * as Sentry from '@sentry/nextjs'
 import { useEffect } from 'react'
 
-interface PageProps {
+interface ErrorBoundaryProps {
     error: Error & { digest?: string }
     reset: () => void
 }
@@ -11,7 +11,7 @@ interface PageProps {
 export default function Error({
     error,
     reset,
-}: PageProps) {
+}: ErrorBoundaryProps) {
 
     useEffect(() => {
         // log the error to Sentry.io
