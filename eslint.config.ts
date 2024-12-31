@@ -43,18 +43,18 @@ const tseslintConfig = tseslint.config(
         name: 'custom/typescript-eslint/recommended',
         files: ['**/*.ts?(x)'],
         extends: [
-            ...tseslintConfigs.recommended,
+            //...tseslintConfigs.recommended,
             // OR more type checked rules
             //...tseslintConfigs.recommendedTypeChecked,
             // OR more strict rules
-            //...tseslintConfigs.strict,
+            ...tseslintConfigs.strict,
             // OR more strict and type checked rules
             //...tseslintConfigs.strictTypeChecked,
             // optional stylistic rules
-            ...tseslintConfigs.stylistic,
+            //...tseslintConfigs.stylistic,
             // OR the type checked version
-            //...tseslintConfigs.stylisticTypeChecked,
-        ] as FlatConfig.ConfigArray,
+            ...tseslintConfigs.stylisticTypeChecked,
+        ],
         // only needed if you use TypeChecked rules
         languageOptions: {
             parserOptions: {
@@ -111,7 +111,7 @@ const nextConfig = [
             'jsx-a11y/aria-unsupported-elements': 'warn',
             'jsx-a11y/role-has-required-aria-props': 'warn',
             'jsx-a11y/role-supports-aria-props': 'warn',
-        } as FlatConfig.Rules,
+        },
         settings: {
             'react': {
                 version: 'detect',
