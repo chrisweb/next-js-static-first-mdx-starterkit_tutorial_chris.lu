@@ -8,13 +8,13 @@
         "build": "npm run lint && next build",
         "start": "next start",
         "next-lint": "next lint",
-        "lint": "eslint --flag unstable_ts_config --cache --cache-location .next/cache/eslint/",
-        "lint-nocache": "eslint --flag unstable_ts_config",
-        "lint-debug": "eslint --flag unstable_ts_config --debug",
-        "lint-fix": "eslint --flag unstable_ts_config --fix",
-        "lint-debug-config": "eslint --flag unstable_ts_config --debug eslint.config.ts",
-        "lint-print-config": "eslint --flag unstable_ts_config --print-config eslint.config.ts",
-        "lint-inspect-config": "eslint --flag unstable_ts_config --inspect-config eslint.config.ts"
+        "lint": "eslint --cache --cache-location .next/cache/eslint/",
+        "lint-nocache": "eslint",
+        "lint-debug": "eslint --debug",
+        "lint-fix": "eslint --fix",
+        "lint-debug-config": "eslint --debug eslint.config.ts",
+        "lint-print-config": "eslint --print-config eslint.config.ts",
+        "lint-inspect-config": "eslint --inspect-config eslint.config.ts"
     },
     "dependencies": {
         "@mdx-js/loader": "3.1.0",
