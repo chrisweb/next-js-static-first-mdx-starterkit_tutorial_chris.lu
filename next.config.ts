@@ -1,24 +1,23 @@
 import { withSentryConfig } from '@sentry/nextjs';
-//import type { NextConfig } from 'next'
+import type { NextConfig } from 'next'
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js'
 import createMdx from '@next/mdx'
 import rehypeMDXImportMedia from 'rehype-mdx-import-media'
-import rehypePrettyCode from 'rehype-pretty-code'
+import { rehypePrettyCode, type Options as rehypePrettyCodeOptionsType } from 'rehype-pretty-code'
 import { readFileSync } from 'fs'
 import rehypeSlug from 'rehype-slug'
-import { remarkTableOfContents } from 'remark-table-of-contents'
+import { remarkTableOfContents, type IRemarkTableOfContentsOptions as remarkTableOfContentsOptionsType } from 'remark-table-of-contents'
 import remarkGfm from 'remark-gfm'
 import { rehypeGithubAlerts } from 'rehype-github-alerts'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 
-const nextConfig = (phase/*: string*/) => {
+const nextConfig = (phase: string) => {
 
     const themePath = new URL('./node_modules/material-theme/themes/OneDark-Pro.json', import.meta.url)
     const themeFileContent = readFileSync(themePath, 'utf-8')
 
-    /** @type {import('rehype-pretty-code').Options} */
-    const rehypePrettyCodeOptions = {
+    const rehypePrettyCodeOptions: rehypePrettyCodeOptionsType = {
         theme: JSON.parse(themeFileContent),
         keepBackground: false,
         defaultLang: {
@@ -36,8 +35,7 @@ const nextConfig = (phase/*: string*/) => {
         },
     }
 
-    /** @type {import('remark-table-of-contents').IRemarkTableOfContentsOptions} */
-    const remarkTableOfContentsOptions = {
+    const remarkTableOfContentsOptions: remarkTableOfContentsOptionsType = {
         containerAttributes: {
             id: 'articleToc',
         },
@@ -64,7 +62,7 @@ const nextConfig = (phase/*: string*/) => {
         console.log('happy development session ;)')
     }
 
-    const nextConfigOptions/*: NextConfig*/ = {
+    const nextConfigOptions: NextConfig = {
         reactStrictMode: true,
         poweredByHeader: false,
         experimental: {
@@ -102,7 +100,7 @@ const nextConfig = (phase/*: string*/) => {
 
 }
 
-const securityHeadersConfig = (phase/*: string*/) => {
+const securityHeadersConfig = (phase: string) => {
 
     const cspReportOnly = true
 
