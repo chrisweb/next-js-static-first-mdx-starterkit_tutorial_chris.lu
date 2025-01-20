@@ -218,6 +218,16 @@ code[data-line-numbers-max-digits="3"]>[data-line]::before {
     padding: 0px;
 }
 
+[data-line].remove {
+    background-color: #852424;
+    border-left-color: #ff0000;
+}
+
+[data-line].add {
+    background-color: #248531;
+    border-left-color: #18c218;
+}
+
 #articleToc {
     width: 100%;
     max-width: 400px;

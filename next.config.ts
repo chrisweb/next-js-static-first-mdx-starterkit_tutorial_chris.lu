@@ -11,6 +11,7 @@ import remarkGfm from 'remark-gfm'
 import { rehypeGithubAlerts } from 'rehype-github-alerts'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { transformerNotationDiff } from '@shikijs/transformers'
 
 const nextConfig = (phase: string) => {
 
@@ -33,6 +34,9 @@ const nextConfig = (phase: string) => {
             prop: 'meta.property.object',
             int: 'constant.numeric',
         },
+        transformers: [transformerNotationDiff({
+            matchAlgorithm: 'v3',
+        })],
     }
 
     const remarkTableOfContentsOptions: remarkTableOfContentsOptionsType = {
@@ -51,6 +55,10 @@ const nextConfig = (phase: string) => {
             // optional remark and rehype plugins
             remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm, [remarkTableOfContents, remarkTableOfContentsOptions]],
             rehypePlugins: [rehypeGithubAlerts, rehypeSlug, [rehypePrettyCode, rehypePrettyCodeOptions], rehypeMDXImportMedia],
+            //\ @ts-expect-error wrong types
+            //remarkPlugins: [['remark-frontmatter'], ['remark-mdx-frontmatter'], ['remark-gfm'], ['remark-table-of-contents', remarkTableOfContentsOptions]],
+            //\ @ts-expect-error wrong types
+            //rehypePlugins: [['rehype-github-alerts'], ['rehype-slug'], ['rehype-pretty-code', rehypePrettyCodeOptions], ['rehype-mdx-import-media']],
             remarkRehypeOptions: {
                 footnoteLabel: 'Notes',
                 footnoteLabelTagName: 'span',
