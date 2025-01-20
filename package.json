@@ -37,7 +37,7 @@
         "remark-gfm": "4.0.0",
         "remark-mdx-frontmatter": "5.0.0",
         "remark-table-of-contents": "2.1.0",
-        "shiki": "1.27.2",
+        "shiki": "2.0.3",
         "vfile-matter": "5.0.0"
     },
     "devDependencies": {
