@@ -20,8 +20,8 @@
         "@mdx-js/loader": "3.1.0",
         "@next/mdx": "15.1.6",
         "@primer/octicons": "19.14.0",
-        "@sentry/nextjs": "8.50.0",
-        "@shikijs/transformers": "2.1.0",
+        "@sentry/nextjs": "8.52.1",
+        "@shikijs/transformers": "2.2.0",
         "@types/mdx": "2.0.13",
         "@vercel/analytics": "1.4.1",
         "@vercel/speed-insights": "1.1.0",
@@ -38,16 +38,16 @@
         "remark-gfm": "4.0.0",
         "remark-mdx-frontmatter": "5.0.0",
         "remark-table-of-contents": "2.1.0",
-        "shiki": "2.1.0",
+        "shiki": "2.2.0",
         "vfile-matter": "5.0.0"
     },
     "devDependencies": {
-        "@eslint/js": "9.18.0",
+        "@eslint/js": "9.19.0",
         "@types/eslint-plugin-jsx-a11y": "6.10.0",
-        "@types/node": "22.10.7",
-        "@types/react": "19.0.7",
+        "@types/node": "22.12.0",
+        "@types/react": "19.0.8",
         "@types/react-dom": "19.0.3",
-        "eslint": "9.18.0",
+        "eslint": "9.19.0",
         "eslint-config-next": "15.1.6",
         "eslint-import-resolver-typescript": "3.7.0",
         "eslint-plugin-import": "2.31.0",
@@ -56,13 +56,13 @@
         "eslint-plugin-react": "7.37.4",
         "eslint-plugin-react-hooks": "5.1.0",
         "jiti": "2.4.2",
-        "remark-preset-lint-consistent": "6.0.0",
-        "remark-preset-lint-markdown-style-guide": "6.0.0",
-        "remark-preset-lint-recommended": "7.0.0",
+        "remark-preset-lint-consistent": "6.0.1",
+        "remark-preset-lint-markdown-style-guide": "6.0.1",
+        "remark-preset-lint-recommended": "7.0.1",
         "typescript": "5.7.3",
-        "typescript-eslint": "8.21.0"
+        "typescript-eslint": "8.22.0"
     },
     "overrides": {
-        "shiki": "2.1.0"
+        "shiki": "2.2.0"
     }
 }
