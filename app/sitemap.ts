@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const pageUrl = currentUrl + page.replace('app', '').replaceAll('\\', '/').replace('(tutorial_examples)/', '').replace('/page.mdx', '')
 
         siteMap.push({
-            url: frontmatter?.permalink ? frontmatter.permalink : pageUrl,
+            url: frontmatter?.permalink ?? pageUrl,
             lastModified: frontmatter?.modified ? new Date(frontmatter.modified) : new Date(defaultDate),
             changeFrequency: 'weekly',
             priority: 0.9,
