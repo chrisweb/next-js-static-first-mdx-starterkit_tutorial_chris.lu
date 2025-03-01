@@ -4,7 +4,7 @@ import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js'
 import createMdx from '@next/mdx'
 import rehypeMDXImportMedia from 'rehype-mdx-import-media'
 import { rehypePrettyCode, type Options as rehypePrettyCodeOptionsType } from 'rehype-pretty-code'
-import { readFileSync } from 'fs'
+//import { readFileSync } from 'fs'
 import rehypeSlug from 'rehype-slug'
 import { remarkTableOfContents, type IRemarkTableOfContentsOptions as remarkTableOfContentsOptionsType } from 'remark-table-of-contents'
 import remarkGfm from 'remark-gfm'
@@ -15,11 +15,12 @@ import { transformerNotationDiff } from '@shikijs/transformers'
 
 const nextConfig = (phase: string) => {
 
-    const themePath = new URL('./node_modules/material-theme/themes/OneDark-Pro.json', import.meta.url)
-    const themeFileContent = readFileSync(themePath, 'utf-8')
+    //const themePath = new URL('./node_modules/material-theme/themes/OneDark-Pro.json', import.meta.url)
+    //const themeFileContent = readFileSync(themePath, 'utf-8')
 
     const rehypePrettyCodeOptions: rehypePrettyCodeOptionsType = {
-        theme: JSON.parse(themeFileContent),
+        //theme: JSON.parse(themeFileContent),
+        theme: 'one-dark-pro',
         keepBackground: false,
         defaultLang: {
             block: 'js',
@@ -254,9 +255,6 @@ export default withSentryConfig(
         // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
         // side errors will fail.
         tunnelRoute: '/monitoring',
-
-        // Hides source maps from generated client bundles
-        hideSourceMaps: true,
 
         // Automatically tree-shake Sentry logger statements to reduce bundle size
         disableLogger: true,
