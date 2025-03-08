@@ -1,8 +1,23 @@
-# "Next.js static first MDX starterkit" source code
+<a href="https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/chrisweb/next-js-static-first-mdx-starterkit_tutorial_chris.lu/main/public/images/readme/static_first_mdx_starterkit.avif" type="image/avif" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/chrisweb/next-js-static-first-mdx-starterkit_tutorial_chris.lu/main/public/images/readme/static_first_mdx_starterkit.webp" type="image/webp" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/chrisweb/next-js-static-first-mdx-starterkit_tutorial_chris.lu/main/public/images/readme/static_first_mdx_starterkit.avif" type="image/avif" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/chrisweb/next-js-static-first-mdx-starterkit_tutorial_chris.lu/main/public/images/readme/static_first_mdx_starterkit.webp" type="image/webp" />
+    <img src="https://raw.githubusercontent.com/chrisweb/next-js-static-first-mdx-starterkit_tutorial_chris.lu/main/public/images/readme/static_first_mdx_starterkit.jpg" alt="chris.lu banner" />
+  </picture>
+</a>
 
-This repository contains all the source code for the "[Next.js static first MDX starterkit](https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit)" tutorial
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+
+# Next.js static first MDX starterkit
+
+This repository contains all the source code from the "[Next.js static first MDX starterkit](https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit)" tutorial
 
 Every branch of this repository corresponds to a section of the tutorial.
+
+> [!NOTE]  
+> I update the main branch from time to time as it contains the final version of the source code, but I do NOT update the dependencies in the "chapter" branches  
 
 ## npm commands (package.json scripts)
 
