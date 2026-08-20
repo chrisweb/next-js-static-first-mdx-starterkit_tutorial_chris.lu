@@ -1,5 +1,5 @@
 import './global.css'
-import '@/node_modules/rehype-github-alerts/dist/styling/css/index.css'
+import 'rehype-github-alerts/styling/css/index.css'
 import { Metadata } from 'next'
 import HeaderNavigation from '@/components/header/Navigation'
 import { Kablammo } from 'next/font/google'
