@@ -6,7 +6,6 @@ import importPlugin from 'eslint-plugin-import'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
-// @ts-expect-error this package has no types
 import nextPlugin from '@next/eslint-plugin-next'
 import * as mdxPlugin from 'eslint-plugin-mdx'
 
